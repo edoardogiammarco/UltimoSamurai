@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 453964863}
   offset: {x: 0, y: 0, z: -1}
-  damping: 0.5
+  damping: 1
 --- !u!1 &453964859
 GameObject:
   m_ObjectHideFlags: 0
