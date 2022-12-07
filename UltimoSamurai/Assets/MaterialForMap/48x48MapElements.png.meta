@@ -149,7 +149,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,6 +157,111 @@ TextureImporter:
       bones: []
       spriteID: 8fd3be79b365a0e48b867dd03788f9cf
       internalID: -1119033472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 48x48BigRock
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 720
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0eef3af1c21514ebc4e34fc4d3953d
+      internalID: -771161307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 28x28SmallRock
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 730
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca678ae7445b75e4c9b6219e50377c4b
+      internalID: 521741105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 48x48BigTree
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 721
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d20f0e4d710d7a408eb8abc695d3f11
+      internalID: -273031536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 48x48GroupOfSmallTrees
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 721
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee56e62a27da6694c802654c7db8de1c
+      internalID: 1582008943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 24x24SmallTree
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 730
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6876fed4904a300458086b536bc330df
+      internalID: 1865845808
       vertices: []
       indices: 
       edges: []
@@ -172,7 +277,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      48x48GroupOfSmallTrees: 1582008943
+      24x24SmallTree: 1865845808
+      28x28SmallRock: 521741105
+      48x48BigTree: -273031536
       48x48GrassTile: -1119033472
+      48x48BigRock: -771161307
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
