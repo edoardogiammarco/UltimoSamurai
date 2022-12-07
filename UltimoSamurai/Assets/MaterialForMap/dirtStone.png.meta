@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c4893650c171fe042a73607db95681d2
+guid: 276d982e24aeffc45b7dd2dbc8089310
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,7 +139,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: COLLISIONBLOCK
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 416
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435ac40dd4916ef41a6408beb24da213
+      internalID: 402198863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -150,7 +171,106 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dirtStone_94: 1753450093
+      dirtStone_65: 1612533727
+      dirtStone_52: 529376997
+      dirtStone_76: 1478051474
+      dirtStone_36: 578171308
+      dirtStone_56: 806341439
+      dirtStone_64: 825527923
+      dirtStone_1: 589514188
+      dirtStone_90: -683810434
+      dirtStone_47: -1686567173
+      dirtStone_8: -774011040
+      dirtStone_25: -714340620
+      dirtStone_21: 720872574
+      dirtStone_89: 1220213104
+      dirtStone_95: -132623206
+      dirtStone_16: 514461710
+      dirtStone_15: 666700546
+      dirtStone_70: 449927859
+      dirtStone_19: -1505838533
+      dirtStone_7: 175255597
+      dirtStone_91: 516065673
+      dirtStone_66: 1589240053
+      dirtStone_93: -1223864104
+      dirtStone_28: -179129505
+      dirtStone_50: -1657695399
+      dirtStone_54: -1858123523
+      dirtStone_73: 493221318
+      dirtStone_13: -1934072231
+      dirtStone_45: 1799183197
+      dirtStone_38: -672341534
+      dirtStone_72: 1418455232
+      dirtStone_27: 2118362773
+      dirtStone_30: -1192384701
+      dirtStone_61: -1521819841
+      dirtStone_49: -385604929
+      dirtStone_87: -550855760
+      dirtStone_75: 528162606
+      dirtStone_68: 1844233913
+      dirtStone_24: 1414907671
+      dirtStone_77: 1682327815
+      dirtStone_3: 1258010833
+      dirtStone_42: -383517421
+      dirtStone_71: -388001957
+      dirtStone_92: -454473145
+      dirtStone_33: -536042846
+      dirtStone_31: 530287859
+      dirtStone_22: 1552757652
+      dirtStone_85: 1986978239
+      dirtStone_53: 830095112
+      dirtStone_55: 1785288832
+      dirtStone_5: -441223569
+      dirtStone_17: 1358517988
+      dirtStone_62: -1616913792
+      dirtStone_82: 164910438
+      dirtStone_2: -1350161544
+      dirtStone_20: -13347025
+      dirtStone_39: -538945593
+      dirtStone_86: -163651292
+      dirtStone_97: -82798957
+      dirtStone_40: -1529032189
+      dirtStone_78: -227894055
+      dirtStone_26: -489022818
+      dirtStone_29: 411650008
+      dirtStone_34: 528063686
+      dirtStone_6: -1655226012
+      dirtStone_96: -1676653601
+      dirtStone_67: -1514714555
+      dirtStone_46: 681756190
+      dirtStone_48: -656148255
+      dirtStone_69: 781705396
+      dirtStone_88: -142128629
+      dirtStone_0: 873595196
+      dirtStone_51: -345473815
+      dirtStone_84: 1889610370
+      dirtStone_83: -77669450
+      dirtStone_98: 1560583225
+      dirtStone_9: -1762264788
+      dirtStone_32: -88664571
+      dirtStone_60: -1210097611
+      dirtStone_10: -1782551079
+      dirtStone_81: 1161624095
+      COLLISIONBLOCK: 402198863
+      dirtStone_63: -2016919269
+      dirtStone_14: 1067336665
+      dirtStone_59: 1973976154
+      dirtStone_80: -1038362995
+      dirtStone_58: 267746438
+      dirtStone_4: -2077014088
+      dirtStone_43: 980749492
+      dirtStone_41: 176478402
+      dirtStone_79: -1947260569
+      dirtStone_99: 1278944477
+      dirtStone_37: 882696113
+      dirtStone_44: -1899840260
+      dirtStone_74: -81961148
+      dirtStone_35: 912264428
+      dirtStone_57: -1199893091
+      dirtStone_18: -1290146040
+      dirtStone_23: -1517523477
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
