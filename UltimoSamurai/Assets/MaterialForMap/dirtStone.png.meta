@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: COLLISIONBLOCK
+      name: 48x48COLLISIONBLOCK
       rect:
         serializedVersion: 2
         x: 96
@@ -157,6 +157,27 @@ TextureImporter:
       bones: []
       spriteID: 435ac40dd4916ef41a6408beb24da213
       internalID: 402198863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 16x16COLLISIONBLOCK
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ada80364d522414498701c4e2a0deb67
+      internalID: -526986720
       vertices: []
       indices: 
       edges: []
@@ -209,6 +230,7 @@ TextureImporter:
       dirtStone_49: -385604929
       dirtStone_87: -550855760
       dirtStone_75: 528162606
+      48x48COLLISIONBLOCK: 402198863
       dirtStone_68: 1844233913
       dirtStone_24: 1414907671
       dirtStone_77: 1682327815
@@ -232,6 +254,7 @@ TextureImporter:
       dirtStone_86: -163651292
       dirtStone_97: -82798957
       dirtStone_40: -1529032189
+      16x16COLLISIONBLOCK: 873595196
       dirtStone_78: -227894055
       dirtStone_26: -489022818
       dirtStone_29: 411650008
@@ -243,17 +266,15 @@ TextureImporter:
       dirtStone_48: -656148255
       dirtStone_69: 781705396
       dirtStone_88: -142128629
-      dirtStone_0: 873595196
       dirtStone_51: -345473815
       dirtStone_84: 1889610370
-      dirtStone_83: -77669450
       dirtStone_98: 1560583225
+      dirtStone_83: -77669450
       dirtStone_9: -1762264788
       dirtStone_32: -88664571
       dirtStone_60: -1210097611
       dirtStone_10: -1782551079
       dirtStone_81: 1161624095
-      COLLISIONBLOCK: 402198863
       dirtStone_63: -2016919269
       dirtStone_14: 1067336665
       dirtStone_59: 1973976154
