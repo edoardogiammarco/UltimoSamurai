@@ -284,7 +284,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -844969533
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1914367591, guid: c4bb441f71d2407408e4dd6cf9e79c8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -18480,22 +18480,22 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: 1e-45
+      e00: NaN
       e01: 0
-      e02: 1.4495531e+10
-      e03: 1.4495531e+10
-      e10: 0
+      e02: 3.3750038
+      e03: 3.3750038
+      e10: 9.08e-43
       e11: 0
-      e12: 7.44e-43
-      e13: 7.44e-43
-      e20: 7.492772e+13
+      e12: 9.05e-43
+      e13: 9.05e-43
+      e20: 4.6820546e+23
       e21: 1e-45
-      e22: -2.0184911e-28
-      e23: -8.666169e+9
+      e22: -5.0017677e-29
+      e23: -1.5846177e+29
       e30: 4.5905e-41
       e31: 0
-      e32: 7.44e-43
-      e33: 7.47e-43
+      e32: 9.05e-43
+      e33: 9.08e-43
   - m_RefCount: 1
     m_Data:
       e00: 3
