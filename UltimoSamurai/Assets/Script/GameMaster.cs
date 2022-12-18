@@ -7,6 +7,10 @@ public class GameMaster : MonoBehaviour
     public void GoToGameScene(){
         SceneManager.LoadScene("Main");
     }
+    public void GoToMenuScene(){
+        SceneManager.LoadScene("Main Menu");
+    }
+    
     // Start is called before the first frame update
     void Start()
     {

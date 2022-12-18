@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Chest
   layers:
   - Default
   - TransparentFX
@@ -47,6 +49,7 @@ TagManager:
   - name: Player
     uniqueID: 4018846067
     locked: 0
+<<<<<<< Updated upstream
   - name: Objects
     uniqueID: 2965816411
     locked: 0
@@ -61,4 +64,8 @@ TagManager:
     locked: 0
   - name: Collisions(must be set to transparent)
     uniqueID: 1200245661
+=======
+  - name: Collectable
+    uniqueID: 4018435589
+>>>>>>> Stashed changes
     locked: 0
