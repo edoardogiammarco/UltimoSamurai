@@ -6,12 +6,10 @@ public class Player : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
-    public int gold ; 
 
     // Start is called before the first frame update
     private void Start()
     {
-        gold=0;
         boxCollider = GetComponent<BoxCollider2D>();    
     }
 
@@ -20,10 +18,7 @@ public class Player : MonoBehaviour
     {
         // Reset MoveDelta
         moveDelta = Vector3.zero;
-       // hit = Phisics2D.BoxCast(transform.position, boxCollider.size,0,new Vector2)
-       // float x = Input.GetAxisRaw("Horizontal"); ma a che serve questa roba prima??
-       Debug.Log(gold);
+
+        float x = Input.GetAxisRaw("Horizontal");
     }
-
-
 }
