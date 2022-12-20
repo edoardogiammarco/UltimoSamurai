@@ -21,4 +21,6 @@ public class Player : MonoBehaviour
 
         float x = Input.GetAxisRaw("Horizontal");
     }
+
+    
 }
