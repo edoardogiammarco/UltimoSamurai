@@ -24,13 +24,13 @@
             {
                 if(movementJoystick.joystickVec.x>0)
                 {
-                    gameObject.transform.localScale = new Vector2(1,1);
+                    gameObject.transform.localScale = new Vector2(2,2);
                     animator.SetFloat("Speed",1);
                     rb.velocity = new Vector2(movementJoystick.joystickVec.x * playerSpeed * Time.deltaTime, movementJoystick.joystickVec.y * playerSpeed * Time.deltaTime);
                 }
                 else
                 {
-                    gameObject.transform.localScale = new Vector2(-1,1);
+                    gameObject.transform.localScale = new Vector2(-2,2);
                     animator.SetFloat("Speed",1);
                     rb.velocity = new Vector2(movementJoystick.joystickVec.x * playerSpeed * Time.deltaTime, movementJoystick.joystickVec.y * playerSpeed * Time.deltaTime);
                 }

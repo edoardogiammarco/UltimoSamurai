@@ -372,6 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementJoystick: {fileID: 1506535337}
   playerSpeed: 5
+  animator: {fileID: 0}
 --- !u!1 &461704416
 GameObject:
   m_ObjectHideFlags: 0
