@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class BaseEnemyScript : MonoBehaviour
 {
-
-    public Transform player;
-    //da modificare
-    int moveSpeed = 4;
-    int maxDist = 10;
-    int minDist = 5;
+    private Rigidbody2D rb;
+    private float moveSpeed;
+    private Vector3 directionToPlayer;
+    private Vector3 localScale;
+    public Player player;
     public int maxHealt = 100;
     int currentHealth;
     public Animator animator;
@@ -20,7 +19,41 @@ public class BaseEnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        player = FindObjectOfType(typeof(Player)) as Player;
+        moveSpeed = 2f;
+        localScale = transform.localScale;
         currentHealth = maxHealt;
+    }
+
+    private void FixedUpdate()
+    {
+        if ( currentHealth<=0){
+            rb.velocity= new Vector2(transform.position.x,transform.position.y);
+         
+        }
+         MoveEnemy();
+    }
+
+    private void MoveEnemy()
+    {
+
+        
+        directionToPlayer = (player.transform.position - transform.position).normalized;
+        rb.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y) * moveSpeed;
+        
+    }
+
+    private void LateUpdate()
+    {
+        if (rb.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(localScale.x, localScale.y,0);
+        }
+        else if (rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-localScale.x, localScale.y, 0);
+        }
     }
 
     public void TakeDamage(int damage){
@@ -33,33 +66,11 @@ public class BaseEnemyScript : MonoBehaviour
         }
     }
     void Die(){
-
         //  death animation
-        
         animator.SetTrigger("isDead");
-
-        /* Destroying enemy ninja*/
         GetComponent<Collider2D>().enabled=false;
-        this.enabled = false;
+        /* Destroying enemy ninja*/
         GameObject.Destroy(enemy,2f);
-    }
-
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.LookAt(Player);
- 
-         if (Vector3.Distance(transform.position, Player.position) >= MinDist)
-         {
- 
-             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-
-             if (Vector3.Distance(transform.position, Player.position) <= MaxDist)
-             {
-                 //Here Call any function U want Like Shoot at here or somet$$anonymous$$ng
-             }
-         }
+      
     }
 }
