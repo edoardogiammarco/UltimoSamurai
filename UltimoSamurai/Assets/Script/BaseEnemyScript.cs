@@ -24,6 +24,7 @@ public class BaseEnemyScript : MonoBehaviour
         moveSpeed = 2f;
         localScale = transform.localScale;
         currentHealth = maxHealt;
+        animator.SetFloat("speed",1f);
     }
 
     private void FixedUpdate()
@@ -41,6 +42,7 @@ public class BaseEnemyScript : MonoBehaviour
         
         directionToPlayer = (player.transform.position - transform.position).normalized;
         rb.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y) * moveSpeed;
+
         
     }
 
@@ -58,7 +60,11 @@ public class BaseEnemyScript : MonoBehaviour
 
     public void TakeDamage(int damage){
         currentHealth -= damage;
+        //move enemy away from the player
+        
+
         //play hurt animation
+        animator.SetTrigger("hit");
 
         if( currentHealth <= 0 ){
             //play death animation;
@@ -66,11 +72,16 @@ public class BaseEnemyScript : MonoBehaviour
         }
     }
     void Die(){
+        
         //  death animation
         animator.SetTrigger("isDead");
         GetComponent<Collider2D>().enabled=false;
         /* Destroying enemy ninja*/
         GameObject.Destroy(enemy,2f);
       
+    }
+    void Attack(){
+        
+
     }
 }
