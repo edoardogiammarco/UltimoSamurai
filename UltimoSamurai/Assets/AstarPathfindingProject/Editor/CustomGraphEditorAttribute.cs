@@ -1,3 +1,4 @@
+
 namespace Pathfinding {
 	/// <summary>Added to editors of custom graph types</summary>
 	[System.AttributeUsage(System.AttributeTargets.All, Inherited = false, AllowMultiple = true)]

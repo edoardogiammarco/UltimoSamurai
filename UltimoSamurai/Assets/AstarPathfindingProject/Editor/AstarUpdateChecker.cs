@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 #if UNITY_2018_1_OR_NEWER
@@ -305,3 +306,4 @@ namespace Pathfinding {
 		}
 	}
 }
+#endif
