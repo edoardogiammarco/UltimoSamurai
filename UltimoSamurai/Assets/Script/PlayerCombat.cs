@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PlayerCombat : MonoBehaviour
 {
 
@@ -15,50 +15,78 @@ public class PlayerCombat : MonoBehaviour
     public float attackrange2 = 1f;
     public int attackDamage1 = 20;
     public int attackDamage2 = 40;
-    public float attackRate1 = 2f;
-    float nextAttackTime1 = 0f;
+    private float timeBtwAttack1;      
+    public float startTimeBtwAttack1;
+    public bool nowAttack1;
+    private float timeBtwAttack2;      
+    public float startTimeBtwAttack2;
+    public bool nowAttack2;
+
 
     // Update is called once per frame
    public void Update()
     {        
+        if(timeBtwAttack1<=0) nowAttack1=true;
+        else timeBtwAttack1-= Time.deltaTime;
+      
+
+        if(timeBtwAttack2<=0) nowAttack2=true;
+        else timeBtwAttack2-= Time.deltaTime;
+      
+    }
+    
+    public void OnAttack1(InputAction.CallbackContext ctd){
+        if(nowAttack1== true){        
+             Attack1();
+             timeBtwAttack1= startTimeBtwAttack1;
+            }
+        nowAttack1= false;
+        
     }
 
-    public void OnClickAttack1() {
-        if(Time.time>= nextAttackTime1){
-
         
-        Attack1();
-        nextAttackTime1 = Time.time + 1f/ attackRate1;
-        }
+    void Attack1() {
+      
+        
+             animator.SetTrigger("Attack1");
+
+             /*Detect enemies in range of attack*/
+             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position,attackrange1,enemyLayers);
+
+             /*Damage enemies*/  
+             foreach ( Collider2D enemy in hitEnemies){
+                 enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage1);
+                }
+        
+        
+        
 
     }
-        public void Attack1() {
-        
-        
-        /* Animation starts*/
-        isAttacking = AnimatorIsPlaying();
-        if (!isAttacking)animator.SetTrigger("Attack1");
 
-        /*Detect enemies in range of attack*/
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position,attackrange1,enemyLayers);
-
-        /*Damage enemies*/
-        foreach ( Collider2D enemy in hitEnemies){
-            enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage1);
-        }
+    public void OnAttack2(InputAction.CallbackContext ctd){
+        if(nowAttack2== true){        
+             Attack2();
+             timeBtwAttack2= startTimeBtwAttack2;
+            }
+        nowAttack2= false;
+        
     }
 
     public void Attack2() {
-        isAttacking = AnimatorIsPlaying();
-        if(!isAttacking)    animator.SetTrigger("Attack2");        
+     
+        
+             animator.SetTrigger("Attack2");
 
-        /*Detect enemies in range of attack*/
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position,attackrange1,enemyLayers);
+             /*Detect enemies in range of attack*/
+             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position,attackrange1,enemyLayers);
 
-        /*Damage enemies*/
-        foreach ( Collider2D enemy in hitEnemies){
-            enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage2);
-        }
+             /*Damage enemies*/  
+             foreach ( Collider2D enemy in hitEnemies){
+                 enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage2);
+                }
+            
+
+
     }
 
     // Checks if player is currently attacking

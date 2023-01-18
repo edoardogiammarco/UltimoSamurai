@@ -132,7 +132,5 @@ public class BaseEnemyScript : MonoBehaviour
       
     }
     void Attack(){
-        
-
     }
 }
