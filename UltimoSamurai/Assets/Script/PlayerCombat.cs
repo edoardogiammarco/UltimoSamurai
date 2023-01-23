@@ -102,8 +102,9 @@ public class PlayerCombat : MonoBehaviour
     void OnDrawGizmosSelected(){
         if ( attackPoint1 == null) return;
         if ( attackPoint2 == null) return;
-        Gizmos.DrawWireSphere(attackPoint1.position,attackrange1);
-        Gizmos.DrawWireSphere(attackPoint2.position,attackrange2);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(attackPoint1.position,new Vector3(2f, 2f, 1));
+        Gizmos.DrawWireCube(attackPoint2.position,new Vector3(2, 1, 1));
  
     }
  
