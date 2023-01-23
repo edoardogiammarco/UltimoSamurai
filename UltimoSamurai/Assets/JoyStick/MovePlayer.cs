@@ -9,6 +9,7 @@
         public float playerSpeed;
         private Rigidbody2D rb;
         public Animator animator;
+        private int player_Scale = 2;
       //  private int playerscale;
     
         // Start is called before the first frame update
@@ -24,13 +25,13 @@
             {
                 if(movementJoystick.joystickVec.x>0)
                 {
-                    gameObject.transform.localScale = new Vector2(2,2);
+                    gameObject.transform.localScale = new Vector2(player_Scale,player_Scale);
                     animator.SetFloat("Speed",1);
                     rb.velocity = new Vector2(movementJoystick.joystickVec.x * playerSpeed * Time.deltaTime, movementJoystick.joystickVec.y * playerSpeed * Time.deltaTime);
                 }
                 else
                 {
-                    gameObject.transform.localScale = new Vector2(-2,2);
+                    gameObject.transform.localScale = new Vector2(-player_Scale,player_Scale);
                     animator.SetFloat("Speed",1);
                     rb.velocity = new Vector2(movementJoystick.joystickVec.x * playerSpeed * Time.deltaTime, movementJoystick.joystickVec.y * playerSpeed * Time.deltaTime);
                 }
