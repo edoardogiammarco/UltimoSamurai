@@ -15,6 +15,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackrange2 = 1f;
     public int attackDamage1 = 20;
     public int attackDamage2 = 40;
+    
+    // manage attack flow
     private float timeBtwAttack1;      
     public float startTimeBtwAttack1;
     public bool nowAttack1;
@@ -44,6 +46,14 @@ public class PlayerCombat : MonoBehaviour
         
     }
 
+    public void OnAttack2(InputAction.CallbackContext ctd){
+        if(nowAttack2== true){        
+             Attack2();
+             timeBtwAttack2= startTimeBtwAttack2;
+            }
+        nowAttack2= false;
+        
+    }
         
     void Attack1() {
       
@@ -63,14 +73,6 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    public void OnAttack2(InputAction.CallbackContext ctd){
-        if(nowAttack2== true){        
-             Attack2();
-             timeBtwAttack2= startTimeBtwAttack2;
-            }
-        nowAttack2= false;
-        
-    }
 
     public void Attack2() {
      
@@ -78,7 +80,7 @@ public class PlayerCombat : MonoBehaviour
              animator.SetTrigger("Attack2");
 
              /*Detect enemies in range of attack*/
-             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position,attackrange1,enemyLayers);
+             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint2.position,attackrange2,enemyLayers);
 
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
@@ -89,13 +91,7 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    // Checks if player is currently attacking
-    bool AnimatorIsPlaying() {
 
-        return   animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1") 
-                || animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2");
-    
-    }
 
 
     /* Function that draws the attackPoint */
@@ -106,6 +102,10 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.DrawWireCube(attackPoint1.position,new Vector3(2f, 2f, 1));
         Gizmos.DrawWireCube(attackPoint2.position,new Vector3(2, 1, 1));
  
+    }
+
+    public void TakeDamage ( int damage){
+        animator.SetTrigger("isHurt");
     }
  
 

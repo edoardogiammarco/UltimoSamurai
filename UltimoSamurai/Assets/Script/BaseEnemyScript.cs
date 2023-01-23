@@ -10,11 +10,18 @@ public class BaseEnemyScript : MonoBehaviour
     private float moveSpeed;
     private Vector3 directionToPlayer;              //vector updates to get direction to player
     private Vector3 localScale;
-    //public Player player;
     public int maxHealt = 100;
     int currentHealth;
     public Animator animator;
-    public GameObject enemy ;
+    public GameObject enemy;
+    // attack variables
+    public Transform enemyAttackPoint;
+    public float attackrange=1;
+    public int attackDamage= 20;
+    public LayerMask actorLayers;
+    public bool nowAttack;
+    private float timeBtwAttack;
+    public float startTimeBtwAttack;
 
     public Transform target;                        //AIPathfinder
     Path path;                                      //AIPathfinder
@@ -35,10 +42,11 @@ public class BaseEnemyScript : MonoBehaviour
         moveSpeed = 200f;
         localScale = transform.localScale;
         currentHealth = maxHealt;
-        animator.SetFloat("speed",1f);
+        animator.SetBool("isAlive",true);
+        
     }
 
-    //AIPathfinder
+    /*AIPathfinder Methods*/
     void UpdatePath() {
         if (seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
@@ -51,7 +59,19 @@ public class BaseEnemyScript : MonoBehaviour
     }
 
     void FixedUpdate() {
+
+
+
+        //check if the enemy is near the player and attack
+        if(timeBtwAttack<=0)  Attack();
+        else timeBtwAttack-= Time.deltaTime;
         
+        
+        //check if the enemy is moving
+        if(rb.velocity.x!= 0 || rb.velocity.y!=0)         animator.SetFloat("speed",1f);
+
+
+        /*START OF AI PATHFINDER SCRIPT*/
         if (path == null) return;
 
         if (currentWaypoint >= path.vectorPath.Count) {
@@ -71,7 +91,12 @@ public class BaseEnemyScript : MonoBehaviour
         if (distance < nextWaypointDistance) {
             currentWaypoint++;
         }
+        /*END OF AI PATHFINDER SCRIPT*/
 
+
+       
+       
+        /*Change sprite direction*/
         if (rb.velocity.x > 0)
         {
             transform.localScale = new Vector3(localScale.x, localScale.y,0);
@@ -81,34 +106,7 @@ public class BaseEnemyScript : MonoBehaviour
             transform.localScale = new Vector3(-localScale.x, localScale.y, 0);
         }
     }
-    /*
-    private void FixedUpdate()
-    {
-        if ( currentHealth<=0){
-            rb.velocity = new Vector2(transform.position.x,transform.position.y);
-        }
-         MoveEnemy();
-    }
-
-    private void MoveEnemy(){
-        
-        directionToPlayer = (target.transform.position - transform.position).normalized;
-        rb.velocity = new Vector2(directionToPlayer.x, directionToPlayer.y) * moveSpeed;
-
-    }
-    
-    private void LateUpdate()
-    {
-        if (rb.velocity.x > 0)
-        {
-            transform.localScale = new Vector3(localScale.x, localScale.y,0);
-        }
-        else if (rb.velocity.x < 0)
-        {
-            transform.localScale = new Vector3(-localScale.x, localScale.y, 0);
-        }
-    }
-    */
+   
     public void TakeDamage(int damage){
         currentHealth -= damage;
         //move enemy away from the player
@@ -125,6 +123,7 @@ public class BaseEnemyScript : MonoBehaviour
     void Die(){
         
         //  death animation
+        animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
         GetComponent<Collider2D>().enabled=false;
         /* Destroying enemy ninja*/
@@ -132,5 +131,33 @@ public class BaseEnemyScript : MonoBehaviour
       
     }
     void Attack(){
+        if( ((target.transform.position.x-enemy.transform.position.x<= 1) 
+             && ( target.transform.position.x - enemy.transform.position.x>= -1))
+                                             &&
+                    ((target.transform.position.y-enemy.transform.position.y<= 1) 
+                       && ( target.transform.position.y - enemy.transform.position.y>= -1)) )
+             
+                       
+                 {
+                    timeBtwAttack= startTimeBtwAttack;
+                    // start attack animation
+                    animator.SetTrigger("attack");
+                    // Detect player in range of attack
+                    Collider2D[] hitplayer = Physics2D.OverlapCircleAll(enemyAttackPoint.position,attackrange,actorLayers);
+
+                     /*Damage enemies*/  
+                    foreach ( Collider2D player in hitplayer){
+                    player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                    }
+
+                 }
+
+
+    }
+    void OnDrawGizmosSelected(){
+        if ( enemyAttackPoint == null) return;
+        Gizmos.DrawWireSphere(enemyAttackPoint.position,attackrange);
+        
+ 
     }
 }
