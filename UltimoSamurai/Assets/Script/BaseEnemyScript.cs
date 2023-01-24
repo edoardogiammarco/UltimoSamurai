@@ -147,7 +147,7 @@ public class BaseEnemyScript : MonoBehaviour
 
                      /*Damage enemies*/  
                     foreach ( Collider2D player in hitplayer){
-                    player.GetComponent<PlayerCombat>().TakeDamage(attackDamage);
+                    player.GetComponent<PlayerCombat>().PlayerTakeDamage(attackDamage);
                     }
 
                  }

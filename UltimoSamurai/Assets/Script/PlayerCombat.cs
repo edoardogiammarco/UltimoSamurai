@@ -104,8 +104,8 @@ public class PlayerCombat : MonoBehaviour
  
     }
 
-    public void TakeDamage ( int damage){
-        animator.SetTrigger("isHurt");
+    public void PlayerTakeDamage ( int damage){
+        transform.GetComponent<Player>().takeHit(damage);
     }
  
 
