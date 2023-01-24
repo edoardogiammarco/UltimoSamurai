@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
     private int currHealth;
-    private int maxHealth = 20;
+    private int maxHealth = 100;
     public Animator animator;
 
     // Start is called before the first frame update
     private void Start(){
         boxCollider = GetComponent<BoxCollider2D>();    
         currHealth= maxHealth;
+        animator.SetBool("isAlive",true);
+
     }
 
     // Update is called once per frame
@@ -34,8 +37,10 @@ public class Player : MonoBehaviour
 
     }
     void die(){
-        animator.SetBool("isDead",true);
+        animator.SetBool("isAlive",false);
+        animator.SetTrigger("death");
 
+        //SceneManager.LoadScene("Game Over");
     
 
     }

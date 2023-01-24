@@ -8,12 +8,12 @@ public class BaseEnemyScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float moveSpeed;
-    private Vector3 directionToPlayer;              //vector updates to get direction to player
     private Vector3 localScale;
     public int maxHealt = 100;
     int currentHealth;
     public Animator animator;
     public GameObject enemy;
+    public GameObject playerGameObject;
     // attack variables
     public Transform enemyAttackPoint;
     public float attackrange=1;
@@ -25,7 +25,7 @@ public class BaseEnemyScript : MonoBehaviour
 
     public Transform target;                        //AIPathfinder
     Path path;                                      //AIPathfinder
-    public float nextWaypointDistance = 3f;         //AIPathfinder
+    public float nextWaypointDistance = 1f;         //AIPathfinder
     int currentWaypoint = 0;                        //AIPathfinder
     bool reachedEndOfPath = false;                  //AIPathfinder
     Seeker seeker;                                  //AIPathfinder
@@ -142,6 +142,7 @@ public class BaseEnemyScript : MonoBehaviour
                     timeBtwAttack= startTimeBtwAttack;
                     // start attack animation
                     animator.SetTrigger("attack");
+                    //transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
                     // Detect player in range of attack
                     Collider2D[] hitplayer = Physics2D.OverlapCircleAll(enemyAttackPoint.position,attackrange,actorLayers);
 

@@ -9,13 +9,14 @@
         public float playerSpeed;
         private Rigidbody2D rb;
         public Animator animator;
-        private int player_Scale = 2;
+        private float player_Scale;
       //  private int playerscale;
     
         // Start is called before the first frame update
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            player_Scale= transform.localScale.x;
         }
     
         // Update is called once per frame
