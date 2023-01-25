@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class PlayerCombat : MonoBehaviour
 {
 
@@ -37,7 +38,7 @@ public class PlayerCombat : MonoBehaviour
       
     }
     
-    public void OnAttack1(InputAction.CallbackContext ctd){
+    public void OnAttack1(InputAction.CallbackContext ctd1){
         if(nowAttack1== true){        
              Attack1();
              timeBtwAttack1= startTimeBtwAttack1;
@@ -46,7 +47,7 @@ public class PlayerCombat : MonoBehaviour
         
     }
 
-    public void OnAttack2(InputAction.CallbackContext ctd){
+    public void OnAttack2(InputAction.CallbackContext ctd2){
         if(nowAttack2== true){        
              Attack2();
              timeBtwAttack2= startTimeBtwAttack2;
@@ -99,15 +100,18 @@ public class PlayerCombat : MonoBehaviour
         if ( attackPoint1 == null) return;
         if ( attackPoint2 == null) return;
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(attackPoint1.position,new Vector3(2f, 2f, 1));
-        Gizmos.DrawWireCube(attackPoint2.position,new Vector3(2, 1, 1));
+        Gizmos.DrawWireCube(attackPoint1.position,new Vector3(attackrange1,attackrange1/2, 1));
+        Gizmos.DrawWireCube(attackPoint2.position,new Vector3(attackrange2,attackrange2/20, 1));
  
     }
 
     public void PlayerTakeDamage ( int damage){
         transform.GetComponent<Player>().takeHit(damage);
     }
- 
+
+    void goToGameOverScene(){
+          SceneManager.LoadScene("Game Over");
+    }
 
 
 

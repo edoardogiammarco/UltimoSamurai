@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
+    public GameObject playerGameObject;
     private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
     private int currHealth;
@@ -39,8 +40,11 @@ public class Player : MonoBehaviour
     void die(){
         animator.SetBool("isAlive",false);
         animator.SetTrigger("death");
+        //GameObject.Destroy(playerGameObject,2f);
 
-        //SceneManager.LoadScene("Game Over");
+        Debug.Log("Il giocatore è morto dopo due secondi?");
+
+      
     
 
     }
