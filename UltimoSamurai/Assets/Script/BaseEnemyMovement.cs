@@ -23,7 +23,7 @@ public class BaseEnemyMovement : MonoBehaviour
         InvokeRepeating("UpdatePath", 0f, .5f);     //AIPathfinder
         
         //player = FindObjectOfType(typeof(Player)) as Player;
-        moveSpeed = 200f;
+        moveSpeed = 360f;
         localScale = transform.localScale;
         
     }
