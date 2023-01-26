@@ -22,7 +22,8 @@ public class BaseEnemyScript : MonoBehaviour
     public LayerMask actorLayers;
     public bool nowAttack;
     private float timeBtwAttack;
-    public float startTimeBtwAttack;
+    private float startTimeBtwAttack;
+    private int probabilityOfAttack;
 
 
     // Start is called before the first frame update
@@ -38,11 +39,12 @@ public class BaseEnemyScript : MonoBehaviour
     void FixedUpdate() {
 
 
-
-        //check if the enemy is near the player and attack
-        if(timeBtwAttack<=0)  Attack();
-        else timeBtwAttack-= Time.deltaTime;
         
+        //check if the enemy is near the player and attack
+        if(timeBtwAttack<=0 )  Attack();
+        else timeBtwAttack-= Time.deltaTime;
+        if( currentHealth <= 0 ) enemy.transform.GetComponent<BaseEnemyMovement>().enabled= false;
+
 
 
     }
@@ -53,8 +55,7 @@ public class BaseEnemyScript : MonoBehaviour
         //play hurt animation
         animator.SetTrigger("hit");
         // knockback
-        transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
-    
+         
 
         if( currentHealth <= 0 ){
             //play death animation;
@@ -71,15 +72,18 @@ public class BaseEnemyScript : MonoBehaviour
         GetComponent<Collider2D>().enabled=false;
         GetComponent<BaseEnemyMovement>().enabled=false;
         /* Destroying enemy ninja*/
-        GameObject.Destroy(enemy,1f);
+        GameObject.Destroy(enemy,0.5f);
       
     }
     void Attack(){
+        startTimeBtwAttack= Random.Range(2.0f,4.0f);
+        probabilityOfAttack = Random.Range(0,10);
         if( ((target.transform.position.x-enemy.transform.position.x<= 1) 
              && ( target.transform.position.x - enemy.transform.position.x>= -1))
                                              &&
                     ((target.transform.position.y-enemy.transform.position.y<= 1) 
-                       && ( target.transform.position.y - enemy.transform.position.y>= -1)) )
+                       && ( target.transform.position.y - enemy.transform.position.y>= -1))
+                            && probabilityOfAttack<=7 )
              
                        
                  {
@@ -104,6 +108,11 @@ public class BaseEnemyScript : MonoBehaviour
         Gizmos.DrawWireSphere(enemyAttackPoint.position,attackrange);
         
  
+    }
+
+    void startKnockBack(){
+        transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
+    
     }
 
 }
