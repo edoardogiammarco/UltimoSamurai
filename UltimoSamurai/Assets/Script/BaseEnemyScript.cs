@@ -91,6 +91,14 @@ public class BaseEnemyScript : MonoBehaviour
                     // start attack animation
                     animator.SetTrigger("attack");
                     //transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
+
+
+                 }
+
+
+    }
+
+    public void AttackAfterAnimation(){
                     // Detect player in range of attack
                     Collider2D[] hitplayer = Physics2D.OverlapCircleAll(enemyAttackPoint.position,attackrange,actorLayers);
 
@@ -98,9 +106,6 @@ public class BaseEnemyScript : MonoBehaviour
                     foreach ( Collider2D player in hitplayer){
                     player.GetComponent<PlayerCombat>().PlayerTakeDamage(attackDamage);
                     }
-
-                 }
-
 
     }
     void OnDrawGizmosSelected(){

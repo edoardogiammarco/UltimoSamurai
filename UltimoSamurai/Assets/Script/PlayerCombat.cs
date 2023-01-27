@@ -61,6 +61,13 @@ public class PlayerCombat : MonoBehaviour
         
              animator.SetTrigger("Attack1");
 
+
+        
+        
+        
+
+    }
+    public void Attack1DuringAnimation(){
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position,attackrange1,enemyLayers);
 
@@ -68,18 +75,21 @@ public class PlayerCombat : MonoBehaviour
              foreach ( Collider2D enemy in hitEnemies){
                  enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage1);
                 }
-        
-        
-        
 
     }
-
 
     public void Attack2() {
      
         
              animator.SetTrigger("Attack2");
 
+
+            
+
+
+    }
+
+    public void Attack2DuringAnimation(){
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint2.position,attackrange2,enemyLayers);
 
@@ -87,8 +97,6 @@ public class PlayerCombat : MonoBehaviour
              foreach ( Collider2D enemy in hitEnemies){
                  enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage2);
                 }
-            
-
 
     }
 
