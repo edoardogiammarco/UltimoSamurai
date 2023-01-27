@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TX Plant_47
+  m_Name: collision
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 315519917, guid: 95b656b072a31644ab9f52ec415b90da, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6745098}
+  m_Sprite: {fileID: 233174854, guid: d62cd17dcd0d8594b80c89f3e4ff2aa1, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Transform:
     e00: 1
     e01: 0
