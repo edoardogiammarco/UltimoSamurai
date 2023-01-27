@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
     private int currHealth;
     private int maxHealth = 100;
     public Animator animator;
+    public int darkness; 
 
     // Start is called before the first frame update
     private void Start(){
         boxCollider = GetComponent<BoxCollider2D>();    
         currHealth= maxHealth;
         animator.SetBool("isAlive",true);
+        darkness = 0; 
 
     }
 
@@ -25,8 +27,8 @@ public class Player : MonoBehaviour
     private void FixedUpdate(){
         // Reset MoveDelta
         moveDelta = Vector3.zero;
-
         float x = Input.GetAxisRaw("Horizontal");
+
     }
 
     public void takeHit(int damage){
@@ -37,16 +39,16 @@ public class Player : MonoBehaviour
         }
 
     }
-    void die(){
+    public void die(){
         animator.SetBool("isAlive",false);
         animator.SetTrigger("death");
         //GameObject.Destroy(playerGameObject,2f);
 
-        Debug.Log("Il giocatore è morto dopo due secondi?");
+        Debug.Log("Il giocatore è morto ");
+    }
 
-      
-    
-
+    public void incrementDarkness(){
+        darkness+= 40;
     }
 
 
