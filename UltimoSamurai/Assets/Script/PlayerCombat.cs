@@ -24,8 +24,11 @@ public class PlayerCombat : MonoBehaviour
     private float timeBtwAttack2;      
     public float startTimeBtwAttack2;
     public bool nowAttack2;
-
-
+    // attack point for  OverLapAreaAll
+    public Transform attack1RectangleCorner;
+    public Transform attack1RectangleOppositeCorner;
+    public Transform attack2RectangleCorner;
+    public Transform attack2RectangleOppositeCorner;    
     // Update is called once per frame
    public void Update()
     {        
@@ -69,7 +72,7 @@ public class PlayerCombat : MonoBehaviour
     }
     public void Attack1DuringAnimation(){
              /*Detect enemies in range of attack*/
-             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position,attackrange1,enemyLayers);
+             Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack1RectangleCorner.position,attack1RectangleOppositeCorner.position,enemyLayers);
 
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
@@ -83,7 +86,7 @@ public class PlayerCombat : MonoBehaviour
         
              animator.SetTrigger("Attack2");
              transform.GetComponent<Player>().incrementDarkness();
-             if(transform.GetComponent<Player>().darkness>=100) {
+             if(transform.GetComponent<Player>().darkness>=300) {
                 transform.GetComponent<Player>().die();
              }
 
@@ -95,7 +98,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void Attack2DuringAnimation(){
              /*Detect enemies in range of attack*/
-             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint2.position,attackrange2,enemyLayers);
+             Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack2RectangleCorner.position,attack2RectangleOppositeCorner.position,enemyLayers);
 
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
