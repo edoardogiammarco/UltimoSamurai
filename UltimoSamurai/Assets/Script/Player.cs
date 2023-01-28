@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     public void die(){
         animator.SetBool("isAlive",false);
         animator.SetTrigger("death");
-        //GameObject.Destroy(playerGameObject,2f);
+        GetComponent<MovePlayer>().enabled = false;
 
         Debug.Log("Il giocatore è morto ");
     }

@@ -69,10 +69,10 @@ public class BaseEnemyScript : MonoBehaviour
         //  death animation
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
-        GetComponent<Collider2D>().enabled=false;
         GetComponent<BaseEnemyMovement>().enabled=false;
-        /* Destroying enemy ninja*/
-        GameObject.Destroy(enemy,0.5f);
+        Destroy(enemy,2.5f);
+   
+     
       
     }
     void Attack(){
