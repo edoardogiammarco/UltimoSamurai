@@ -4,8 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour
 {
+
+    public AudioSource mainTheme;
+
+
     public void GoToGameScene(){
         SceneManager.LoadScene("Main");
+        mainTheme.Play();
     }
         public void GoToGameOverScene(){
         SceneManager.LoadScene("Game Over");

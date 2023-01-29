@@ -11,17 +11,22 @@ public class Player : MonoBehaviour
     private int currHealth;
     private int maxHealth = 100;
     public Animator animator;
-    public int darkness;
+    public int startDarkness= 0;
+    public int currDarkness;
     public GameObject healthBar;
+    public GameObject darknessBar;
+    public AudioSource mainTheme;
     //public Transform healthBar;
 
     // Start is called before the first frame update
     private void Start(){
         boxCollider = GetComponent<BoxCollider2D>();    
         currHealth= maxHealth;
+        currDarkness = startDarkness; 
         healthBar.GetComponent<HealthBarScript>().SetMaxHealth(maxHealth);
+        darknessBar.GetComponent<HealthBarScript>().SetMaxDarkness(startDarkness);
         animator.SetBool("isAlive",true);
-        darkness = 0; 
+        mainTheme.Play();
 
     }
 
@@ -51,7 +56,8 @@ public class Player : MonoBehaviour
     }
 
     public void incrementDarkness(){
-        darkness+= 40;
+        currDarkness+= 10;
+        darknessBar.GetComponent<HealthBarScript>().SetHealth(currDarkness);
     }
 
 

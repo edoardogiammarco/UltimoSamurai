@@ -86,7 +86,7 @@ public class PlayerCombat : MonoBehaviour
         
              animator.SetTrigger("Attack2");
              transform.GetComponent<Player>().incrementDarkness();
-             if(transform.GetComponent<Player>().darkness>=300) {
+             if(transform.GetComponent<Player>().currDarkness>=100) {
                 transform.GetComponent<Player>().die();
              }
 
