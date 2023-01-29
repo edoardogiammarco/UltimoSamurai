@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class Player : MonoBehaviour
 {
     public GameObject playerGameObject;
@@ -12,12 +11,15 @@ public class Player : MonoBehaviour
     private int currHealth;
     private int maxHealth = 100;
     public Animator animator;
-    public int darkness; 
+    public int darkness;
+    public GameObject healthBar;
+    //public Transform healthBar;
 
     // Start is called before the first frame update
     private void Start(){
         boxCollider = GetComponent<BoxCollider2D>();    
         currHealth= maxHealth;
+        healthBar.GetComponent<HealthBarScript>().SetMaxHealth(maxHealth);
         animator.SetBool("isAlive",true);
         darkness = 0; 
 
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
 
     public void takeHit(int damage){
         currHealth -= damage;
+        healthBar.GetComponent<HealthBarScript>().SetHealth(currHealth);
         animator.SetTrigger("isHurt");
         if(currHealth<=0){
             die();
