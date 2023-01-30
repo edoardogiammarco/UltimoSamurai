@@ -10,7 +10,6 @@
         private Rigidbody2D rb;
         public Animator animator;
         private float player_Scale;
-      //  private int playerscale;
     
         // Start is called before the first frame update
         void Start()
@@ -24,6 +23,7 @@
         {
             if(movementJoystick.joystickVec.y != 0 || movementJoystick.joystickVec.x != 0)
             {
+                
                 if(movementJoystick.joystickVec.x>0)
                 {
                     gameObject.transform.localScale = new Vector2(player_Scale,player_Scale);
@@ -39,6 +39,7 @@
             }
             else
             {
+                
                 animator.SetFloat("Speed",0);
                 rb.velocity = Vector2.zero;
             }

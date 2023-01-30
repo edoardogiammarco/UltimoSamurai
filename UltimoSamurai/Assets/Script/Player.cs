@@ -16,12 +16,15 @@ public class Player : MonoBehaviour
     public GameObject healthBar;
     public GameObject darknessBar;
     public AudioSource mainTheme;
-    //public Transform healthBar;
+    public AudioSource coinTaken;
+    public AudioSource runningSound;
+    private int currCoin;
 
     // Start is called before the first frame update
     private void Start(){
         boxCollider = GetComponent<BoxCollider2D>();    
         currHealth= maxHealth;
+        currCoin=0;
         currDarkness = startDarkness; 
         healthBar.GetComponent<HealthBarScript>().SetMaxHealth(maxHealth);
         darknessBar.GetComponent<HealthBarScript>().SetMaxDarkness(startDarkness);
@@ -58,6 +61,22 @@ public class Player : MonoBehaviour
     public void incrementDarkness(){
         currDarkness+= 10;
         darknessBar.GetComponent<HealthBarScript>().SetHealth(currDarkness);
+    }
+
+    public void CoinCollected(){
+        coinTaken.Play();
+        currCoin = currCoin +1 ;
+        playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(currCoin);
+
+    }
+
+    public void PlayRunningSound () {
+        if(!runningSound.isPlaying){
+             runningSound.Play();
+        }
+    }
+    public void PauseRunningSound () {
+        runningSound.Pause();
     }
 
 

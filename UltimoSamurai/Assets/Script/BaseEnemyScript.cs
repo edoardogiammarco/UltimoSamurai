@@ -13,7 +13,8 @@ public class BaseEnemyScript : MonoBehaviour
     public Animator animator;
     public GameObject enemy;
     public GameObject playerGameObject;
-
+    public GameObject CoinGameObject;
+    public int Luck;
 
     // attack variables
     public Transform enemyAttackPoint;
@@ -29,7 +30,7 @@ public class BaseEnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         
-        
+        Luck = 0;
         currentHealth = maxHealt;
         animator.SetBool("isAlive",true);
         
@@ -65,13 +66,14 @@ public class BaseEnemyScript : MonoBehaviour
         }
     }
     void Die(){
-        
         //  death animation
+
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
         GetComponent<BaseEnemyMovement>().enabled=false;
         Destroy(enemy,2.5f);
-   
+        Vector2 deathPosition = transform.position;
+           
      
       
     }
@@ -119,5 +121,12 @@ public class BaseEnemyScript : MonoBehaviour
         transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
     
     }
+
+    public void DropCoin(){
+        int dropCoin = Random.Range(0,9);
+        if(dropCoin<=4+Luck){
+            Instantiate(CoinGameObject,transform.position, Quaternion.identity);
+        }
+    } 
 
 }
