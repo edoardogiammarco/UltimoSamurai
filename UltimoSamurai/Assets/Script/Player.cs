@@ -77,6 +77,10 @@ public class Player : MonoBehaviour
         runningSound.Pause();
     }
 
+    public int getCurrentCoin(){
+        return currCoin;
+    }
+
 
     
 }
