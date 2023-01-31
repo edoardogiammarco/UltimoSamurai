@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     public int currDarkness;
     public GameObject healthBar;
     public GameObject darknessBar;
-    public AudioSource mainTheme;
     public AudioSource coinTaken;
     public AudioSource runningSound;
     private int currCoin;
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour
         healthBar.GetComponent<HealthBarScript>().SetMaxHealth(maxHealth);
         darknessBar.GetComponent<HealthBarScript>().SetMaxDarkness(startDarkness);
         animator.SetBool("isAlive",true);
-        mainTheme.Play();
 
     }
 

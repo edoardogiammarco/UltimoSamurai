@@ -17,6 +17,11 @@ public class PlayerCombat : MonoBehaviour
     public int attackDamage1 = 20;
     public int attackDamage2 = 40;
     
+    //Audio Source
+    public AudioSource takeHitSound;
+    public AudioSource attack1Sound;
+    public AudioSource attack2Sound;
+    
     // manage attack flow
     private float timeBtwAttack1;      
     public float startTimeBtwAttack1;
@@ -73,7 +78,7 @@ public class PlayerCombat : MonoBehaviour
     public void Attack1DuringAnimation(){
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack1RectangleCorner.position,attack1RectangleOppositeCorner.position,enemyLayers);
-
+             attack1Sound.Play();
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
                  enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage1);
@@ -99,7 +104,7 @@ public class PlayerCombat : MonoBehaviour
     public void Attack2DuringAnimation(){
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack2RectangleCorner.position,attack2RectangleOppositeCorner.position,enemyLayers);
-
+             attack2Sound.Play();
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
                  enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage2);
@@ -122,6 +127,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void PlayerTakeDamage ( int damage){
         transform.GetComponent<Player>().takeHit(damage);
+        takeHitSound.Play();
     }
 
     void goToGameOverScene(){
