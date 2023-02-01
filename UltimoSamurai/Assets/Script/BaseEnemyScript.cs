@@ -25,7 +25,6 @@ public class BaseEnemyScript : MonoBehaviour
     private float startTimeBtwAttack;
     private int probabilityOfAttack;
 
-    private WaveSystem waveSystem;
 
     // Start is called before the first frame update
     void Start(){
@@ -39,14 +38,10 @@ public class BaseEnemyScript : MonoBehaviour
    
     void FixedUpdate() {
 
-
-        
         //check if the enemy is near the player and attack
         if(timeBtwAttack<=0 )  Attack();
         else timeBtwAttack-= Time.deltaTime;
         if( currentHealth <= 0 ) enemy.transform.GetComponent<BaseEnemyMovement>().enabled= false;
-
-
 
     }
    
@@ -74,8 +69,7 @@ public class BaseEnemyScript : MonoBehaviour
         Destroy(enemy,2.5f);
         Vector2 deathPosition = transform.position;
         //calls waveSystem function to update number of enemies in current wave
-        waveSystem = waveSystem.getWaveSystem();
-        waveSystem.OnEnemyDeath();
+        WaveSystem.Instance.OnEnemyDeath();
 
     }
 

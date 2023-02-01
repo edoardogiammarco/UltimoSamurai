@@ -7,26 +7,29 @@ public class GameMaster : MonoBehaviour
 
     public AudioSource mainTheme;
 
-
     public void GoToGameScene(){
         SceneManager.LoadScene("Main");
         mainTheme.Play();
     }
+
         public void GoToGameOverScene(){
         SceneManager.LoadScene("Game Over");
-    }    
+    }   
+
     public void GoToMainMenuScene(){
         SceneManager.LoadScene("Main Menu");
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         
     }
+
 }
