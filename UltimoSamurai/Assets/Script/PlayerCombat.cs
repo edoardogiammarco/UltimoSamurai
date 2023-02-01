@@ -29,12 +29,27 @@ public class PlayerCombat : MonoBehaviour
     private float timeBtwAttack2;      
     public float startTimeBtwAttack2;
     public bool nowAttack2;
+    //shop variables
+    public int criticalHit;
+    public int currStrength;
+    public int currCriticalHitProbability;
+
     // attack point for  OverLapAreaAll
     public Transform attack1RectangleCorner;
     public Transform attack1RectangleOppositeCorner;
     public Transform attack2RectangleCorner;
     public Transform attack2RectangleOppositeCorner;    
-    // Update is called once per frame
+    
+    
+    
+
+       // Start is called before the first frame update
+    void Start(){
+        currStrength=0;
+        currCriticalHitProbability=0;
+   
+    } 
+   // Update is called once per frame
    public void Update()
     {        
         if(timeBtwAttack1<=0) nowAttack1=true;
@@ -79,11 +94,23 @@ public class PlayerCombat : MonoBehaviour
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack1RectangleCorner.position,attack1RectangleOppositeCorner.position,enemyLayers);
              attack1Sound.Play();
+             /*Is that a critical hit?*/
+             criticalHit = assignCriticalMultiplier();
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
-                 enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage1);
+                 enemy.GetComponent<BaseEnemyScript>().TakeDamage((attackDamage1+currStrength)*criticalHit);
                 }
 
+    }
+
+    public int assignCriticalMultiplier(){
+        int criticalPercentage = Random.Range(0,100);
+        if ( criticalPercentage<5+currCriticalHitProbability){ // if im in the range of a critical hit 
+            return 4; // return the critical hit multiplier
+        }
+        else { // if im not in the range of a critical hit 
+            return 1; // critical hit multiplier is useless, has no effect on the damage
+        }
     }
 
     public void Attack2() {
@@ -105,9 +132,11 @@ public class PlayerCombat : MonoBehaviour
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack2RectangleCorner.position,attack2RectangleOppositeCorner.position,enemyLayers);
              attack2Sound.Play();
+             /*Is that a critical hit*/
+             criticalHit= assignCriticalMultiplier();
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
-                 enemy.GetComponent<BaseEnemyScript>().TakeDamage(attackDamage2);
+                 enemy.GetComponent<BaseEnemyScript>().TakeDamage((attackDamage2+currStrength)*criticalHit);
                 }
 
     }
@@ -134,7 +163,20 @@ public class PlayerCombat : MonoBehaviour
           SceneManager.LoadScene("Game Over");
     }
 
+    public void AddCriticalHitProbability(){
+        currCriticalHitProbability += 3; // increase of a 3% critical hit probability 
+
+    }
+    public void AddStrength(){
+        currStrength += 10 ; // increase both attack1 and attack2  
+
+    }
+    public int getCriticalHitProbability() {
+        return 5+currCriticalHitProbability;
+    }
+    public int getAttackBonus(){
+        return currStrength;
+    }
 
 
-
-}
+} 

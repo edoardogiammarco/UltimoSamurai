@@ -129,4 +129,11 @@ public class BaseEnemyScript : MonoBehaviour
         }
     } 
 
+    public void setLuck(){
+        Luck += 1;
+    }
+    public int GetLuck(){
+        return Luck;
+    }
+
 }

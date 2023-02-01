@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
     private int currHealth;
-    private int maxHealth = 100;
+    public int maxHealth;
     public Animator animator;
     public int startDarkness= 0;
     public int currDarkness;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     // Start is called before the first frame update
     private void Start(){
+        maxHealth= 100;
         boxCollider = GetComponent<BoxCollider2D>();    
         currHealth= maxHealth;
         currCoin=0;
@@ -81,6 +82,12 @@ public class Player : MonoBehaviour
         return currCoin;
     }
 
+    public void SetMaxHealth(int newMaxHealth){
+        maxHealth = newMaxHealth;
+    }
+    public int GetMaxHealth(){
+        return maxHealth;
+    }
 
     
 }
