@@ -6,6 +6,7 @@ using Pathfinding;
 
 public class BaseEnemyScript : MonoBehaviour
 {
+    
     public Transform target; 
     public int maxHealt = 100;
     int currentHealth;
@@ -25,7 +26,6 @@ public class BaseEnemyScript : MonoBehaviour
     private float startTimeBtwAttack;
     private int probabilityOfAttack;
 
-    private WaveSystem waveSystem;
 
     // Start is called before the first frame update
     void Start(){
@@ -65,22 +65,19 @@ public class BaseEnemyScript : MonoBehaviour
 
         }
     }
-
     void Die(){
         //  death animation
+
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
         GetComponent<BaseEnemyMovement>().enabled=false;
         Destroy(enemy,2.5f);
         Vector2 deathPosition = transform.position;
-        //calls waveSystem function to update number of enemies in current wave
-        waveSystem = waveSystem.getWaveSystem();
-        waveSystem.OnEnemyDeath();
-
+           
+     
+      
     }
-
     void Attack(){
-    
         startTimeBtwAttack= Random.Range(2.0f,4.0f);
         probabilityOfAttack = Random.Range(0,10);
         if( ((target.transform.position.x-enemy.transform.position.x<= 1) 
@@ -90,12 +87,16 @@ public class BaseEnemyScript : MonoBehaviour
                        && ( target.transform.position.y - enemy.transform.position.y>= -1))
                             && probabilityOfAttack<=7 )
              
+                       
                  {
                     timeBtwAttack= startTimeBtwAttack;
                     // start attack animation
                     animator.SetTrigger("attack");
                     //transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
+
+
                  }
+
 
     }
 
@@ -109,11 +110,11 @@ public class BaseEnemyScript : MonoBehaviour
                     }
 
     }
-
     void OnDrawGizmosSelected(){
         if ( enemyAttackPoint == null) return;
         Gizmos.DrawWireSphere(enemyAttackPoint.position,attackrange);
         
+ 
     }
 
     void startKnockBack(){
@@ -131,7 +132,6 @@ public class BaseEnemyScript : MonoBehaviour
     public void setLuck(){
         Luck += 1;
     }
-
     public int GetLuck(){
         return Luck;
     }
