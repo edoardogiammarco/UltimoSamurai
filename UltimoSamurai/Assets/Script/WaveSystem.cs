@@ -31,6 +31,11 @@ public class WaveSystem : MonoBehaviour
         for (int i = 0; i < enemiesPerWave; i++)
         {
             GameObject enemyPrefab = Resources.Load<GameObject>("Base_Enemy");
+            if (enemyPrefab == null) {
+                Debug.LogError("Prefab not found!");
+            } else {
+                Debug.Log("Prefab found!");
+            }
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
             GameObject enemy = Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
             //if you want to use it need to change "Enemy" to class, more complicated
