@@ -30,7 +30,7 @@ public class WaveSystem : MonoBehaviour
     {
         for (int i = 0; i < enemiesPerWave; i++)
         {
-            GameObject enemyPrefab = Resources.Load<GameObject>("Base_Enemy");
+            GameObject enemyPrefab = Resources.Load<GameObject>("Prefabs/Base_Enemy");
             if (enemyPrefab == null) {
                 Debug.LogError("Prefab not found!");
             } else {
