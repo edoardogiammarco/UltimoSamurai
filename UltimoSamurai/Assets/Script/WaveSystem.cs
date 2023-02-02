@@ -9,18 +9,6 @@ public class WaveSystem : MonoBehaviour
     public GameObject[] spawnPoints;
     public int enemiesPerWave = 5;
 
-    //Use a singleton pattern: You can make the WaveSystem a singleton class,
-    //so it only has one instance in the entire game. Then, from any other component,
-    //you can access the instance of WaveSystem by calling its Instance property.
-    public static WaveSystem Instance;      //PORCODIO che soluzione del cazzo
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-
-
     private void Start()
     {
         StartCoroutine(GenerateWave());
@@ -57,4 +45,7 @@ public class WaveSystem : MonoBehaviour
         StartCoroutine(GenerateWave());
     }
 
+    public WaveSystem getWaveSystem(){
+        return this;
+    }
 }
