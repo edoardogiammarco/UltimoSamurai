@@ -125,7 +125,7 @@ public class BaseEnemyScript : MonoBehaviour
     public void DropCoin(){
         int dropCoin = Random.Range(0,9);
         if(dropCoin<=4+Luck){
-            Instantiate(CoinGameObject,transform.position, Quaternion.identity);
+            Instantiate(CoinGameObject,transform.position, Quaternion.identity);//game object da instanziare; posizione ; rotazione 
         }
     } 
 

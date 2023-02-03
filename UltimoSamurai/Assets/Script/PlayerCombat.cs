@@ -50,8 +50,7 @@ public class PlayerCombat : MonoBehaviour
    
     } 
    // Update is called once per frame
-   public void Update()
-    {        
+   public void Update(){        
         if(timeBtwAttack1<=0) nowAttack1=true;
         else timeBtwAttack1-= Time.deltaTime;
       
@@ -103,15 +102,6 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    public int assignCriticalMultiplier(){
-        int criticalPercentage = Random.Range(0,100);
-        if ( criticalPercentage<5+currCriticalHitProbability){ // if im in the range of a critical hit 
-            return 4; // return the critical hit multiplier
-        }
-        else { // if im not in the range of a critical hit 
-            return 1; // critical hit multiplier is useless, has no effect on the damage
-        }
-    }
 
     public void Attack2() {
      
@@ -123,7 +113,6 @@ public class PlayerCombat : MonoBehaviour
              }
 
 
-            
 
 
     }
@@ -141,6 +130,16 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
+            
+    public int assignCriticalMultiplier(){
+        int criticalPercentage = Random.Range(0,100);
+        if ( criticalPercentage<5+currCriticalHitProbability){ // if im in the range of a critical hit 
+            return 4; // return the critical hit multiplier
+        }
+        else { // if im not in the range of a critical hit 
+            return 1; // critical hit multiplier is useless, has no effect on the damage
+        }
+    }
 
 
 
@@ -163,6 +162,10 @@ public class PlayerCombat : MonoBehaviour
           SceneManager.LoadScene("Game Over");
     }
 
+    
+    /*Power_Up Methods*/
+     
+    
     public void AddCriticalHitProbability(){
         currCriticalHitProbability += 3; // increase of a 3% critical hit probability 
 

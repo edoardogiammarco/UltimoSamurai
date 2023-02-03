@@ -24,6 +24,10 @@ public class HealthBarScript : MonoBehaviour{
         myHealthPercentualText.text = "" + health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+    
+    public void SetDarkness ( int darkness){
+        slider.value = darkness;
+    } 
 
     public void SetMaxDarkness(int darkness){
         slider.maxValue= 100;

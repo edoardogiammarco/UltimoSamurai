@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopManScript : MonoBehaviour
 {
         public GameObject shop;
+        
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class ShopManScript : MonoBehaviour
         if(collider.tag == "Player"){
             // apri il menu
             Time.timeScale = 0f;
+            
             shop.SetActive(true);   
 
         }

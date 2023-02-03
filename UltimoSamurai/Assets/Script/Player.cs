@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
     public void incrementDarkness(){
         currDarkness+= 10;
-        darknessBar.GetComponent<HealthBarScript>().SetHealth(currDarkness);
+        darknessBar.GetComponent<HealthBarScript>().SetDarkness(currDarkness);
     }
 
     public void CoinCollected(){
@@ -81,11 +81,14 @@ public class Player : MonoBehaviour
     public int getCurrentCoin(){
         return currCoin;
     }
+    public void SetCurrentCoin(int actualCoin){
+        currCoin = actualCoin;
+    }
 
     public void SetMaxHealth(int newMaxHealth){
         maxHealth = newMaxHealth;
     }
-    public int GetMaxHealth(){
+    public int CurrentMaxHealth(){
         return maxHealth;
     }
 
