@@ -26,6 +26,7 @@ public class BaseEnemyScript : MonoBehaviour
     private float startTimeBtwAttack;
     private int probabilityOfAttack;
 
+    public GameObject WaveSystem;
 
     // Start is called before the first frame update
     void Start(){
@@ -71,6 +72,7 @@ public class BaseEnemyScript : MonoBehaviour
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
         GetComponent<BaseEnemyMovement>().enabled=false;
+        WaveSystem.GetComponent<WaveSystemScript>().EnemyKilled();
         Destroy(enemy,2.5f);
         Vector2 deathPosition = transform.position;
            

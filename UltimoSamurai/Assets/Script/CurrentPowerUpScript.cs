@@ -11,10 +11,11 @@ public class CurrentPowerUpScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myPowerUpText.text = "Current" + "\n" + "Luck:" + enemy.GetComponent<BaseEnemyScript>().GetLuck()
-                               + "\n"+ "StrenGth Bonus:" + player.GetComponent<PlayerCombat>().getAttackBonus()
-                               + "\n"+ player.GetComponent<PlayerCombat>().getCriticalHitProbability()
-                               + "\n"+ player.GetComponent<Player>().CurrentMaxHealth() ;
+        myPowerUpText.text =   "       Current Stats" + "\n" + "  Luck:"           +  enemy.GetComponent<BaseEnemyScript>().GetLuck()
+                               + "\n"+ "  StrenGth Bonus:"          +  player.GetComponent<PlayerCombat>().getAttackBonus()
+                               + "\n"+  "  Critical Hit Chance(%):" +  player.GetComponent<PlayerCombat>().getCriticalHitProbability()
+                               + "\n"+ "  Current Max Health:"      +  player.GetComponent<Player>().CurrentMaxHealth() ;
+
     }
 
     // Update is called once per frame
@@ -24,10 +25,10 @@ public class CurrentPowerUpScript : MonoBehaviour
     }
 
     public void updateCurrentPowerUpState (){
-        myPowerUpText.text = "Current" + "\n" + "Luck:" + enemy.GetComponent<BaseEnemyScript>().GetLuck()
-                               + "\n"+ "StrenGth Bonus:" + player.GetComponent<PlayerCombat>().getAttackBonus()
-                               + "\n"+ player.GetComponent<PlayerCombat>().getCriticalHitProbability()
-                               + "\n"+ player.GetComponent<Player>().CurrentMaxHealth() ;
+        myPowerUpText.text = "       Current Stats" + "\n" + "  Luck:"           +  enemy.GetComponent<BaseEnemyScript>().GetLuck()
+                               + "\n"+ "  StrenGth Bonus:"          +  player.GetComponent<PlayerCombat>().getAttackBonus()
+                               + "\n"+  "  Critical Hit Chance(%):" +  player.GetComponent<PlayerCombat>().getCriticalHitProbability()
+                               + "\n"+ "  Current Max Health:"      +  player.GetComponent<Player>().CurrentMaxHealth() ;
         
     }
 }

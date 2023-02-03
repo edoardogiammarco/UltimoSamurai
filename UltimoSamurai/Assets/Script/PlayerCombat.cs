@@ -83,11 +83,6 @@ public class PlayerCombat : MonoBehaviour
         
              animator.SetTrigger("Attack1");
 
-
-        
-        
-        
-
     }
     public void Attack1DuringAnimation(){
              /*Detect enemies in range of attack*/
