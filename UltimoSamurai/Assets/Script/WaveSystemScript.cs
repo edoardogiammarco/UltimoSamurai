@@ -16,6 +16,7 @@ public class WaveSystemScript : MonoBehaviour
     private void Start()
     {
         enemiesInMap = false;
+        Debug.Log("Spawning wave 1");
         StartCoroutine(BeginWave());
     }
 
@@ -28,14 +29,15 @@ public class WaveSystemScript : MonoBehaviour
     {
             yield return new WaitForSeconds(5);
 
+            // Adding more enemies for next wave
+            waveEnemies = waveCount;
             for (int i=0; i < waveEnemies; i++)
             {
                 SpawnEnemy();
                 yield return new WaitForSeconds(Random.Range(0.5f, 3f));
+                Debug.Log("Enemy spawned in wave " + waveCount);
             }
-            Debug.Log("Wave number " + waveCount + " spawned");
-            // Adding more enemies for next wave
-            waveEnemies = waveCount*2;
+            Debug.Log("Wave number " + waveCount + " finished spawning");
     }
 
     public void areEnemiesInMap() {
@@ -67,7 +69,7 @@ public class WaveSystemScript : MonoBehaviour
         Vector3 spawnPos = new Vector3(Random.Range(0, 40), Random.Range(0, 30), 0);
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
         enemyCountOnMap++;
-        Debug.Log("Enemy spawned,   enemyCountOnMap="+ enemyCountOnMap);
+        Debug.Log("Enemy spawned, enemyCountOnMap="+ enemyCountOnMap);
     }
 
     public void EnemyKilled()
@@ -75,7 +77,8 @@ public class WaveSystemScript : MonoBehaviour
         
         totalKilledEnemies++;
         killedEnemies++;
-        Debug.Log("Enemy killed in wave:"+ killedEnemies + "Total enemy killed:"+ totalKilledEnemies);
+        Debug.Log("Wave enemies killed:"+ killedEnemies + "/" + waveEnemies + "\n" + 
+                  "Total enemy killed:"+ totalKilledEnemies);
         if(enemiesInMap && (killedEnemies == enemyCountOnMap))
         {
             // Reset variables
@@ -87,6 +90,7 @@ public class WaveSystemScript : MonoBehaviour
 
             // Begin new wave
             waveCount++;
+            Debug.Log("Spawning wave number " + waveCount);
             StartCoroutine(BeginWave());
         }
     }

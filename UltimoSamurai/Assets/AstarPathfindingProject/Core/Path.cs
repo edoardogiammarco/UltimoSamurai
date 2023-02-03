@@ -733,7 +733,7 @@ namespace Pathfinding {
 				else text.AppendLine("NULL");
 			}
 
-			text.Append("\nPath Number ").Append(pathID).Append(" (unique id)");
+		//	text.Append("\nPath Number ").Append(pathID).Append(" (unique id)");
 		}
 
 		/// <summary>
