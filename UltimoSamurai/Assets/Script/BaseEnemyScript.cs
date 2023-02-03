@@ -14,7 +14,10 @@ public class BaseEnemyScript : MonoBehaviour
     public GameObject enemy;
     public GameObject playerGameObject;
     public GameObject CoinGameObject;
-    public int Luck;
+    public GameObject WaveSystem;
+    public AudioSource PoofSound;
+    public AudioSource attackSound;
+
 
     // attack variables
     public Transform enemyAttackPoint;
@@ -26,12 +29,9 @@ public class BaseEnemyScript : MonoBehaviour
     private float startTimeBtwAttack;
     private int probabilityOfAttack;
 
-    public GameObject WaveSystem;
-
     // Start is called before the first frame update
     void Start(){
-        
-        Luck = 0;
+    
         currentHealth = maxHealt;
         animator.SetBool("isAlive",true);
         
@@ -72,12 +72,10 @@ public class BaseEnemyScript : MonoBehaviour
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
         GetComponent<BaseEnemyMovement>().enabled=false;
+
         WaveSystem.GetComponent<WaveSystemScript>().EnemyKilled();
         Destroy(enemy,2.5f);
-        Vector2 deathPosition = transform.position;
-           
-     
-      
+        //Vector2 deathPosition = transform.position;
     }
     void Attack(){
         startTimeBtwAttack= Random.Range(2.0f,4.0f);
@@ -126,16 +124,18 @@ public class BaseEnemyScript : MonoBehaviour
 
     public void DropCoin(){
         int dropCoin = Random.Range(0,10);
-        if(dropCoin<=5+Luck){
-            Instantiate(CoinGameObject,transform.position, Quaternion.identity);//game object da instanziare; posizione ; rotazione 
+        if(dropCoin<=5+playerGameObject.GetComponent<Player>().GetLuck()){
+            Instantiate(CoinGameObject,transform.position, Quaternion.identity);//parametri: game object da instanziare; posizione ; rotazione 
         }
     } 
 
-    public void setLuck(){
-        Luck += 1;
+    public void PlayPoofSound(){
+        PoofSound.Play();
     }
-    public int GetLuck(){
-        return Luck;
+    public void PlayAttackSound(){
+        attackSound.Play();
     }
+
+
 
 }

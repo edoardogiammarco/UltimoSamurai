@@ -11,10 +11,10 @@ public class CurrentPowerUpScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myPowerUpText.text =   "       Current Stats" + "\n" + "  Luck:"           +  enemy.GetComponent<BaseEnemyScript>().GetLuck()
-                               + "\n"+ "  StrenGth Bonus:"          +  player.GetComponent<PlayerCombat>().getAttackBonus()
-                               + "\n"+  "  Critical Hit Chance(%):" +  player.GetComponent<PlayerCombat>().getCriticalHitProbability()
-                               + "\n"+ "  Current Max Health:"      +  player.GetComponent<Player>().CurrentMaxHealth() ;
+        myPowerUpText.text =   "       Current Stats" + "\n" + "  Luck:"           +  player.GetComponent<Player>().GetLuck()
+                               + "\n"+ "  Strength Bonus:"                         +  player.GetComponent<PlayerCombat>().getAttackBonus()
+                               + "\n"+  "  Critical Hit Chance(%):"                +  player.GetComponent<PlayerCombat>().getCriticalHitProbability()
+                               + "\n"+ "  Current Max Health:"                     +  player.GetComponent<Player>().CurrentMaxHealth() ;
 
     }
 
@@ -25,10 +25,10 @@ public class CurrentPowerUpScript : MonoBehaviour
     }
 
     public void updateCurrentPowerUpState (){
-        myPowerUpText.text = "       Current Stats" + "\n" + "  Luck:"           +  enemy.GetComponent<BaseEnemyScript>().GetLuck()
-                               + "\n"+ "  StrenGth Bonus:"          +  player.GetComponent<PlayerCombat>().getAttackBonus()
-                               + "\n"+  "  Critical Hit Chance(%):" +  player.GetComponent<PlayerCombat>().getCriticalHitProbability()
-                               + "\n"+ "  Current Max Health:"      +  player.GetComponent<Player>().CurrentMaxHealth() ;
+        myPowerUpText.text = "       Current Stats" + "\n" + "  Luck:"           +  player.GetComponent<Player>().GetLuck()
+                               + "\n"+ "  Strength Bonus:"                       +  player.GetComponent<PlayerCombat>().getAttackBonus()
+                               + "\n"+  "  Critical Hit Chance(%):"              +  player.GetComponent<PlayerCombat>().getCriticalHitProbability()
+                               + "\n"+ "  Current Max Health:"                   +  player.GetComponent<Player>().CurrentMaxHealth() ;
         
     }
 }

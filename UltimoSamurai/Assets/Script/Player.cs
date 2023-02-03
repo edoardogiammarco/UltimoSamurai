@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
     public GameObject darknessBar;
     public AudioSource coinTaken;
     public AudioSource runningSound;
+    public AudioSource takeHitSound;
     private int currCoin;
+    public int Luck;
 
     // Start is called before the first frame update
     private void Start(){
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
         healthBar.GetComponent<HealthBarScript>().SetMaxHealth(maxHealth);
         darknessBar.GetComponent<HealthBarScript>().SetMaxDarkness(startDarkness);
         animator.SetBool("isAlive",true);
+        Luck = 0;
 
     }
 
@@ -69,14 +72,6 @@ public class Player : MonoBehaviour
 
     }
 
-    public void PlayRunningSound () {
-        if(!runningSound.isPlaying){
-             runningSound.Play();
-        }
-    }
-    public void PauseRunningSound () {
-        runningSound.Pause();
-    }
 
     public int getCurrentCoin(){
         return currCoin;
@@ -92,5 +87,24 @@ public class Player : MonoBehaviour
         return maxHealth;
     }
 
+    public void setLuck(){
+        Luck += 1;
+    }
+    public int GetLuck(){
+        return Luck;
+    }
+
+    public void PlayRunningSound () {
+        if(!runningSound.isPlaying){
+             runningSound.Play();
+        }
+    }
+    public void PauseRunningSound () {
+        runningSound.Pause();
+    }
+
+    public void TakeHitSound(){
+     //   takeHitSound.Play();
+    }
     
 }

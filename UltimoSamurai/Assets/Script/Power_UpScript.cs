@@ -16,7 +16,7 @@ public class Power_UpScript : MonoBehaviour
     private int incrementHealthPrice = 15;
     private int newCurrentCoin;
     private int newCurrentMaxHealth;
-
+    public AudioSource achievementUnlocked;
     void Start(){
         shop.SetActive(false);
     }
@@ -29,6 +29,8 @@ public class Power_UpScript : MonoBehaviour
             // aggiorna valore monete
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
+            //riproduci achievement sound
+             PlayAchievementSound();
             // aggiorna valore critical hit
             playerGameObject.GetComponent<PlayerCombat>().AddCriticalHitProbability();
             // aggiorna stato parametri
@@ -46,8 +48,10 @@ public class Power_UpScript : MonoBehaviour
             // aggiorna valore monete
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
+            //riproduci achievement sound
+            PlayAchievementSound();
             // aggiorna valore critical hit
-            enemyGameObject.GetComponent<BaseEnemyScript>().setLuck();
+            playerGameObject.GetComponent<Player>().setLuck();
             // aggiorna stato parametri
             currentPowerUpStatus.GetComponent<CurrentPowerUpScript>().updateCurrentPowerUpState();
             
@@ -63,7 +67,8 @@ public class Power_UpScript : MonoBehaviour
             // aggiorna valore monete
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
-
+            //riproduci achievement sound
+            PlayAchievementSound();
             // aggiorna valore maxhealth su script bar script
             healthBar.GetComponent<HealthBarScript>().IncreaseMaxHealth(playerGameObject.GetComponent<Player>().CurrentMaxHealth());
             // aggiorna valore currhealth su player script
@@ -85,7 +90,8 @@ public class Power_UpScript : MonoBehaviour
             // aggiorna valore monete
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
-
+            //riproduci achievement sound
+            PlayAchievementSound();
             // aggiorna valore strength
             playerGameObject.GetComponent<PlayerCombat>().AddStrength();
             // aggiorna stato parametri
@@ -99,5 +105,9 @@ public class Power_UpScript : MonoBehaviour
         Time.timeScale = 1f;
         shop.SetActive(false);
 
+    }
+
+    public void PlayAchievementSound(){
+        achievementUnlocked.Play();
     }
 }
