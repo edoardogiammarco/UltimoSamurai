@@ -71,10 +71,6 @@ public class BaseEnemyScript : MonoBehaviour
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
         GetComponent<BaseEnemyMovement>().enabled=false;
-
-        WaveSystem waveSystem = GameObject.Find("WaveSystem").GetComponent<WaveSystem>();
-        waveSystem.EnemyKilled();
-
         Destroy(enemy,2.5f);
         Vector2 deathPosition = transform.position;
            
