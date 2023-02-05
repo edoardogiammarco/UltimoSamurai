@@ -42,10 +42,36 @@ public class BaseEnemyScript : MonoBehaviour
         //check if the enemy is near the player and attack
         if(timeBtwAttack<=0 )  Attack();
         else timeBtwAttack-= Time.deltaTime;
+
+        //if( canAttack()) Attack();
+        //else timeBtwAttack -= Time.deltaTime;
+
         if( currentHealth <= 0 ) enemy.transform.GetComponent<BaseEnemyMovement>().enabled= false;
 
     }
-   
+
+    /*
+    private bool canAttack() {
+
+        startTimeBtwAttack= Random.Range(2.0f,4.0f);
+        probabilityOfAttack = Random.Range(0,10);
+
+        // If enemy in range of player        
+        if((((target.transform.position.x-enemy.transform.position.x<= 1) 
+             && (target.transform.position.x - enemy.transform.position.x>= -1))
+                                             &&
+                    ((target.transform.position.y-enemy.transform.position.y<= 1) 
+                       && (target.transform.position.y - enemy.transform.position.y>= -1))
+                            && probabilityOfAttack<=7)
+                            && timeBtwAttack <= 0)
+                            {
+                                return true;
+                            }
+        return false;
+
+    }
+    */
+
     public void TakeDamage(int damage){
 
         currentHealth -= damage;
@@ -78,7 +104,16 @@ public class BaseEnemyScript : MonoBehaviour
         //Vector2 deathPosition = transform.position;
 
     }
+/*
+    void Attack() {
+        
+        timeBtwAttack = startTimeBtwAttack;
+        // Start attack animation
+        animator.SetTrigger("attack");
 
+    }
+*/
+    
     void Attack(){
 
         startTimeBtwAttack= Random.Range(2.0f,4.0f);
@@ -90,13 +125,14 @@ public class BaseEnemyScript : MonoBehaviour
                        && ( target.transform.position.y - enemy.transform.position.y>= -1))
                             && probabilityOfAttack<=7 )
                  {
-                    timeBtwAttack= startTimeBtwAttack;
+                    timeBtwAttack = startTimeBtwAttack;
                     // start attack animation
                     animator.SetTrigger("attack");
                     //transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
                  }
 
     }
+    
 
     public void AttackAfterAnimation(){
 
@@ -105,7 +141,7 @@ public class BaseEnemyScript : MonoBehaviour
 
                      /*Damage enemies*/  
                     foreach ( Collider2D player in hitplayer){
-                    player.GetComponent<PlayerCombat>().PlayerTakeDamage(attackDamage);
+                        player.GetComponent<PlayerCombat>().PlayerTakeDamage(attackDamage);
                     }
 
     }

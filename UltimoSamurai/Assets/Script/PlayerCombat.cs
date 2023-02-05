@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+
 public class PlayerCombat : MonoBehaviour
 {
-
 
     public Animator animator;
     public LayerMask enemyLayers;
@@ -29,6 +29,7 @@ public class PlayerCombat : MonoBehaviour
     private float timeBtwAttack2;      
     public float startTimeBtwAttack2;
     public bool nowAttack2;
+
     //shop variables
     public int criticalHit;
     public int currStrength;
@@ -39,18 +40,17 @@ public class PlayerCombat : MonoBehaviour
     public Transform attack1RectangleOppositeCorner;
     public Transform attack2RectangleCorner;
     public Transform attack2RectangleOppositeCorner;    
-    
-    
-    
 
-       // Start is called before the first frame update
+    // Start is called before the first frame update
     void Start(){
         currStrength=0;
         currCriticalHitProbability=0;
    
     } 
+
    // Update is called once per frame
-   public void Update(){        
+   public void Update(){       
+     
         if(timeBtwAttack1<=0) nowAttack1=true;
         else timeBtwAttack1-= Time.deltaTime;
       
@@ -61,6 +61,7 @@ public class PlayerCombat : MonoBehaviour
     }
     
     public void OnAttack1(InputAction.CallbackContext ctd1){
+
         if(nowAttack1== true){        
              Attack1();
              timeBtwAttack1= startTimeBtwAttack1;
@@ -70,6 +71,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void OnAttack2(InputAction.CallbackContext ctd2){
+
         if(nowAttack2== true){        
              Attack2();
              timeBtwAttack2= startTimeBtwAttack2;
@@ -78,13 +80,10 @@ public class PlayerCombat : MonoBehaviour
         
     }
         
-    void Attack1() {
-      
-        
-             animator.SetTrigger("Attack1");
+    void Attack1() { animator.SetTrigger("Attack1"); }
 
-    }
     public void Attack1DuringAnimation(){
+
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack1RectangleCorner.position,attack1RectangleOppositeCorner.position,enemyLayers);
              attack1Sound.Play();
@@ -97,18 +96,13 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-
     public void Attack2() {
-     
-        
+             
              animator.SetTrigger("Attack2");
              transform.GetComponent<Player>().incrementDarkness();
              if(transform.GetComponent<Player>().currDarkness>=100) {
                 transform.GetComponent<Player>().die();
              }
-
-
-
 
     }
 
@@ -124,9 +118,9 @@ public class PlayerCombat : MonoBehaviour
                 }
 
     }
-
             
     public int assignCriticalMultiplier(){
+
         int criticalPercentage = Random.Range(0,100);
         if ( criticalPercentage<5+currCriticalHitProbability){ // if im in the range of a critical hit 
             return 4; // return the critical hit multiplier
@@ -134,12 +128,12 @@ public class PlayerCombat : MonoBehaviour
         else { // if im not in the range of a critical hit 
             return 1; // critical hit multiplier is useless, has no effect on the damage
         }
+
     }
-
-
 
     /* Function that draws the attackPoint */
     void OnDrawGizmosSelected(){
+
         if ( attackPoint1 == null) return;
         if ( attackPoint2 == null) return;
         Gizmos.color = Color.blue;
@@ -149,32 +143,25 @@ public class PlayerCombat : MonoBehaviour
     }
 
     public void PlayerTakeDamage ( int damage){
+
         transform.GetComponent<Player>().takeHit(damage);
         takeHitSound.Play();
+
     }
 
-    void goToGameOverScene(){
-          SceneManager.LoadScene("Game Over");
-    }
+    void goToGameOverScene(){ SceneManager.LoadScene("Game Over"); }
 
-    
     /*Power_Up Methods*/
-     
-    
-    public void AddCriticalHitProbability(){
-        currCriticalHitProbability += 3; // increase of a 3% critical hit probability 
 
-    }
-    public void AddStrength(){
-        currStrength += 10 ; // increase both attack1 and attack2  
+    // Increase of a 3% critical hit probability 
+    public void AddCriticalHitProbability(){ currCriticalHitProbability += 3; }
 
-    }
-    public int getCriticalHitProbability() {
-        return 5+currCriticalHitProbability;
-    }
-    public int getAttackBonus(){
-        return currStrength;
-    }
+    // Increase both attack1 and attack2
+    public void AddStrength(){ currStrength += 10; }
+
+    public int getCriticalHitProbability() { return 5+currCriticalHitProbability; }
+
+    public int getAttackBonus(){ return currStrength; }
 
 
 } 
