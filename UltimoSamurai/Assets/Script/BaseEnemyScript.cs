@@ -94,6 +94,7 @@ public class BaseEnemyScript : MonoBehaviour
         playerGameObject.GetComponent<Player>().decreaseDarkness();
 
         // Death animation
+        GetComponent<Collider2D>().enabled=false;
 
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
