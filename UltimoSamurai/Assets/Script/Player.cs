@@ -20,9 +20,11 @@ public class Player : MonoBehaviour
     public AudioSource takeHitSound;
     private int currCoin;
     public int Luck;
+    public bool isPlayerAlive;
 
     // Start is called before the first frame update
     private void Start(){
+        isPlayerAlive = true;
         maxHealth= 100;
         boxCollider = GetComponent<BoxCollider2D>();    
         currHealth= maxHealth;
@@ -40,7 +42,6 @@ public class Player : MonoBehaviour
         // Reset MoveDelta
         moveDelta = Vector3.zero;
         float x = Input.GetAxisRaw("Horizontal");
-
     }
 
     public void takeHit(int damage){
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
 
     }
     public void die(){
+        isPlayerAlive = false;
         animator.SetBool("isAlive",false);
         animator.SetTrigger("death");
         GetComponent<MovePlayer>().enabled = false;
