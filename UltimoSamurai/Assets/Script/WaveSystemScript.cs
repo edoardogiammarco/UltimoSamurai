@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class WaveSystemScript : MonoBehaviour
 {
+    
+    public const int mappaMinX = 77;
+    public const int mappaMaxX = 186;
+    public const int mappaMinY = 0;
+    public const int mappaMaxY = 110;
+    
     public GameObject enemyPrefab;
     private int waveCount = 1;
     private int enemyCountOnMap;
@@ -46,8 +52,8 @@ public class WaveSystemScript : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.transform.position.x >= 0 && enemy.transform.position.x <= 40 &&
-                enemy.transform.position.y >= 0 && enemy.transform.position.y <= 30)
+            if (enemy.transform.position.x >= mappaMinX && enemy.transform.position.x <= mappaMaxX &&
+                enemy.transform.position.y >= mappaMinY && enemy.transform.position.y <= mappaMaxY)
             {
                 enemiesInMap = true;
                 break;
@@ -66,7 +72,7 @@ public class WaveSystemScript : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Vector3 spawnPos = new Vector3(Random.Range(0, 40), Random.Range(0, 30), 0);
+        Vector3 spawnPos = new Vector3(Random.Range(mappaMinX, mappaMaxX), Random.Range(mappaMinY, mappaMaxY), 0);
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
         enemyCountOnMap++;
         Debug.Log("Enemy spawned, enemyCountOnMap="+ enemyCountOnMap);
