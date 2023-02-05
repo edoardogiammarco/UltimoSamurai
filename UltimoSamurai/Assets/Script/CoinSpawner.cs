@@ -10,7 +10,7 @@ public class CoinSpawner : MonoBehaviour
     public float maxSpawnTime = 60f;
     private GameObject player;
     private Player playerScript;
-    
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -20,7 +20,7 @@ public class CoinSpawner : MonoBehaviour
 
     private IEnumerator SpawnCoin()
     {
-        while (playerScript.isPlayerAlive = true)
+        while (playerScript.isPlayerAlive == true)
         {
             float randomTime = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(randomTime);

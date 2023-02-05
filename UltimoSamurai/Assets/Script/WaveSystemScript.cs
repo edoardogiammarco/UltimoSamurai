@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveSystemScript : MonoBehaviour
 {
-    
+
     public const int mappaMinX = 77;
     public const int mappaMaxX = 186;
     public const int mappaMinY = 0;
@@ -80,7 +80,6 @@ public class WaveSystemScript : MonoBehaviour
 
     public void EnemyKilled()
     {
-        
         totalKilledEnemies++;
         killedEnemies++;
         Debug.Log("Wave enemies killed:"+ killedEnemies + "/" + waveEnemies + "\n" + 

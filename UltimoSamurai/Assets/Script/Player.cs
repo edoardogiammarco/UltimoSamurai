@@ -74,6 +74,25 @@ public class Player : MonoBehaviour
 
     }
 
+    public void decreaseDarkness() {
+
+        int darknessToDecrease = 0;
+
+        if(currDarkness >=10) {
+            int value1 = 5;
+            int value2 = 10;
+            // Picking random to decrease from 5 - 10 every time an enemy is killed
+            darknessToDecrease = Random.value < 0.5f ? value1 : value2;
+        }
+        else if (currDarkness == 5) {
+            darknessToDecrease = 5;
+        }
+        else if (currDarkness == 0) { return; }
+
+        currDarkness -= darknessToDecrease;
+        darknessBar.GetComponent<HealthBarScript>().SetDarkness(currDarkness);
+    }
+
 
     public int getCurrentCoin(){
         return currCoin;
