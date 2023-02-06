@@ -15,9 +15,11 @@ public class Player : MonoBehaviour
     public int currDarkness;
     public GameObject healthBar;
     public GameObject darknessBar;
+    /* disaccorpare tutti gli audio*/ 
     public AudioSource coinTaken;
     public AudioSource runningSound;
     public AudioSource takeHitSound;
+    public AudioSource deathSound;
     private int currCoin;
     public int Luck;
     public bool isPlayerAlive;
@@ -58,8 +60,7 @@ public class Player : MonoBehaviour
         animator.SetBool("isAlive",false);
         animator.SetTrigger("death");
         GetComponent<MovePlayer>().enabled = false;
-
-        Debug.Log("Il giocatore è morto ");
+        deathSound.Play();
     }
 
     public void incrementDarkness(){
