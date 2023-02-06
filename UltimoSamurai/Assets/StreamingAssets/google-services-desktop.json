@@ -1,0 +1,36 @@
+{
+  "project_info": {
+    "project_number": "208771228768",
+    "project_id": "ultimosamurai-d81e2",
+    "storage_bucket": "ultimosamurai-d81e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208771228768:ios:726156390e9aa59b35cf05",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.com.unity.template.mobile2D"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208771228768-1d34i9lv6ctiv3rps676m2aak47g3tk1.apps.googleusercontent.com"
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBd9GUZU6s1wV_-59sjbEotvpZs0loSjw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
