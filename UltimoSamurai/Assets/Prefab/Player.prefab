@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &386961745194196055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5213335479677609200}
+  m_Layer: 9
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5213335479677609200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386961745194196055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8646316460666705822}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8646316460093470897
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,6 +80,7 @@ GameObject:
   - component: {fileID: 8646316460666705892}
   - component: {fileID: 8646316460666705895}
   - component: {fileID: 8646316460666705894}
+  - component: {fileID: 5470019162427738391}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -72,6 +104,7 @@ Transform:
   - {fileID: 8646316460093470896}
   - {fileID: 8646316460921264616}
   - {fileID: 8646316460700009003}
+  - {fileID: 5213335479677609200}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -211,6 +244,7 @@ MonoBehaviour:
   coinTaken: {fileID: 0}
   runningSound: {fileID: 0}
   takeHitSound: {fileID: 0}
+  deathSound: {fileID: 0}
   Luck: 0
   isPlayerAlive: 0
 --- !u!95 &8646316460666705893
@@ -390,6 +424,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myScoreText: {fileID: 0}
+--- !u!114 &5470019162427738391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646316460666705818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04b1c11175992940ba502ebe0fd9c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 5213335479677609200}
 --- !u!1 &8646316460700009000
 GameObject:
   m_ObjectHideFlags: 0

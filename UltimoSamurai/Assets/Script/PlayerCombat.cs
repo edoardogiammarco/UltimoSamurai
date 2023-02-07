@@ -149,6 +149,8 @@ public class PlayerCombat : MonoBehaviour
 
     void goToGameOverScene(){ SceneManager.LoadScene("Game Over"); }
 
+   
+   
     /*Power_Up Methods*/
 
     // Increase of a 3% critical hit probability 

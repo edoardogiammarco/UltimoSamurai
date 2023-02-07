@@ -116,7 +116,7 @@ public class BaseEnemyScript : MonoBehaviour
 */
     
     void Attack(){
-// sostituire attacco
+// sostituire con OnCollisionEnter
         startTimeBtwAttack= Random.Range(2.0f,4.0f);
         probabilityOfAttack = Random.Range(0,10);
         if( ((target.transform.position.x-enemy.transform.position.x<= 1) 
@@ -132,6 +132,7 @@ public class BaseEnemyScript : MonoBehaviour
                     animator.SetTrigger("attack");
                     //transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
                  }
+        else timeBtwAttack=0.5f; 
 
     }
     
