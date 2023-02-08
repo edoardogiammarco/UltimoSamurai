@@ -447,7 +447,7 @@ MonoBehaviour:
   startTimeBtwLaunchKunai: 1
   nowLaunchKunai: 0
   direction: {x: 0, y: 0}
-  speed: 15
+  shurikenSpeed: 3
 --- !u!1 &8646316460700009000
 GameObject:
   m_ObjectHideFlags: 0

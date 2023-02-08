@@ -13,7 +13,8 @@ public class KunaiLauncherScript : MonoBehaviour
     public float startTimeBtwLaunchKunai = 1f;
     public bool nowLaunchKunai;
     public Vector2 direction;
-    public float force = 0.0005f;
+    public float shurikenSpeed;
+  
     // Update is called once per frame
     void Update()
     {
@@ -29,7 +30,8 @@ public class KunaiLauncherScript : MonoBehaviour
     public void OnKunaiAttack(InputAction.CallbackContext ctd3){
 
         if(nowLaunchKunai== true){ 
-            direction =  player.GetComponent<Rigidbody2D>().velocity;     
+            direction =  player.GetComponent<Rigidbody2D>().velocity;
+            Debug.Log(direction);     
              ShootKunai();
              timeBtwLaunchKunai= startTimeBtwLaunchKunai;
             }
@@ -39,7 +41,10 @@ public class KunaiLauncherScript : MonoBehaviour
     public void ShootKunai(){
         GameObject bullet = Instantiate(kunaiPrefab,firePoint.position,firePoint.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        bulletRb.AddForce( direction*force, ForceMode2D.Impulse);
+        Debug.Log("Vettore direzione" + new Vector2(direction.x, direction.y ));
+        Debug.Log("Vettore direzione normalizzato" + new Vector2(direction.normalized.x, direction.normalized.y ));
+        Debug.Log("Vettore direzione con velocità" +new Vector2(direction.x*shurikenSpeed, direction.y*shurikenSpeed ));
+        bulletRb.AddForce( new Vector2(direction.x*shurikenSpeed, direction.y*shurikenSpeed ) , ForceMode2D.Impulse);
     }
 
 

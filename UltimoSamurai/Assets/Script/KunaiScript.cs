@@ -21,7 +21,7 @@ public class KunaiScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D enemyCollider){
 
         if(enemyCollider.tag == "enemy"){
-            enemyCollider.GetComponent<BaseEnemyScript>().TakeDamage(50);
+            enemyCollider.GetComponent<BaseEnemyScript>().TakeDamage(5);
         }
 
     }
