@@ -71,11 +71,11 @@ public class BaseEnemyMovement : MonoBehaviour
         /*Change sprite direction*/
         if (rb.velocity.x > 0)
         {
-            transform.localScale = new Vector3(localScale.x, localScale.y,0);
+            transform.localScale = new Vector2(localScale.x, localScale.y);
         }
         else if (rb.velocity.x < 0)
         {
-            transform.localScale = new Vector3(-localScale.x, localScale.y, 0);
+            transform.localScale = new Vector2(-localScale.x, localScale.y);
         }
     }
 }

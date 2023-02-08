@@ -222,6 +222,7 @@ MonoBehaviour:
   movementJoystick: {fileID: 0}
   playerSpeed: 400
   animator: {fileID: 8646316460666705893}
+  kunaiButton: {fileID: 0}
 --- !u!114 &8646316460666705890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +407,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1950b741-8e68-4812-8e47-6ea3b26680c8
     m_ActionName: Player/Attack2
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a76e1c8e-b855-4865-949a-d24efe85135c
+    m_ActionName: Player/KunaiLaunch
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -436,7 +441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04b1c11175992940ba502ebe0fd9c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 8646316460666705818}
   firePoint: {fileID: 5213335479677609200}
+  kunaiPrefab: {fileID: 2627588383242733405, guid: eab346cb9e77e9a45bc4469ad1801554, type: 3}
+  startTimeBtwLaunchKunai: 1
+  nowLaunchKunai: 0
+  direction: {x: 0, y: 0}
+  speed: 15
 --- !u!1 &8646316460700009000
 GameObject:
   m_ObjectHideFlags: 0

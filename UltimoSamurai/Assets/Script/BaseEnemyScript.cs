@@ -119,11 +119,11 @@ public class BaseEnemyScript : MonoBehaviour
 // sostituire con OnCollisionEnter
         startTimeBtwAttack= Random.Range(2.0f,4.0f);
         probabilityOfAttack = Random.Range(0,10);
-        if( ((target.transform.position.x-enemy.transform.position.x<= 1) 
-             && ( target.transform.position.x - enemy.transform.position.x>= -1))
+        if( ((target.transform.position.x-enemy.transform.position.x<= 1.5f) 
+             && ( target.transform.position.x - enemy.transform.position.x>= -1.5f))
                                              &&
-                    ((target.transform.position.y-enemy.transform.position.y<= 1) 
-                       && ( target.transform.position.y - enemy.transform.position.y>= -1))
+                    ((target.transform.position.y-enemy.transform.position.y<= 1.5f) 
+                       && ( target.transform.position.y - enemy.transform.position.y>= -1.5f))
                             && probabilityOfAttack<=7 )
                  {
                     Debug.Log("Entro nell'if dell'attacco");
