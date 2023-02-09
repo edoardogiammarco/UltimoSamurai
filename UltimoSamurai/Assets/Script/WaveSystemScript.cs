@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSystemScript : MonoBehaviour
 {
@@ -18,9 +19,15 @@ public class WaveSystemScript : MonoBehaviour
     private int waveEnemies = 1;
     private bool enemiesInMap;
 
+    public Text countdownText;
+    public GameObject canvas;
+
+
     // Start is called before the first frame update
     private void Start()
-    {
+    {   
+        countdownText = canvas.GetComponentInChildren<Text>();
+        countdownText.enabled = false;
         enemiesInMap = false;
         Debug.Log("Spawning wave 1");
         StartCoroutine(BeginWave());
@@ -34,6 +41,8 @@ public class WaveSystemScript : MonoBehaviour
     private IEnumerator BeginWave()
     {
             yield return new WaitForSeconds(5);
+
+            yield return StartCoroutine(DisplayCountdown());
 
             // Adding more enemies for next wave
             waveEnemies = waveCount;
@@ -98,6 +107,22 @@ public class WaveSystemScript : MonoBehaviour
             Debug.Log("Spawning wave number " + waveCount);
             StartCoroutine(BeginWave());
         }
+    }
+
+    private IEnumerator DisplayCountdown()
+    {
+        // Show the countdown text
+        countdownText.enabled = true;
+        countdownText.text = "3";
+        yield return new WaitForSeconds(1);
+        countdownText.text = "2";
+        yield return new WaitForSeconds(1);
+        countdownText.text = "1";
+        yield return new WaitForSeconds(1);
+        countdownText.text = "GO!";
+        yield return new WaitForSeconds(1);
+        // Hide the countdown text
+        countdownText.enabled = false;
     }
 }
 /*
