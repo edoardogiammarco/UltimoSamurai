@@ -6,6 +6,8 @@ using Pathfinding;
 public class BaseEnemyMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Vector3 localScale;
+    public Animator animator;
     private float moveSpeed;
     public Transform target;                        //AIPathfinder
     Path path;                                      //AIPathfinder
@@ -13,8 +15,6 @@ public class BaseEnemyMovement : MonoBehaviour
     int currentWaypoint = 0;                        //AIPathfinder
     bool reachedEndOfPath = false;                  //AIPathfinder
     Seeker seeker;                                  //AIPathfinder
-    private Vector3 localScale;
-    public Animator animator;
     // Start is called before the first frame update
     void Start(){
         
@@ -40,9 +40,19 @@ public class BaseEnemyMovement : MonoBehaviour
             currentWaypoint = 0;
         }
     }
+
     // Update is called once per frame
     void Update()
     {
+        /*Change sprite direction*/
+        if (rb.velocity.x > 0)
+        {
+            transform.localScale = new Vector2(localScale.x, localScale.y);
+        }
+        else if (rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector2(-localScale.x, localScale.y);
+        }
         /*START OF AI PATHFINDER SCRIPT*/
         if (path == null) return;
 
@@ -68,14 +78,5 @@ public class BaseEnemyMovement : MonoBehaviour
         if(rb.velocity.x!= 0 || rb.velocity.y!=0)         animator.SetFloat("speed",1f);
        
        
-        /*Change sprite direction*/
-        if (rb.velocity.x > 0)
-        {
-            transform.localScale = new Vector2(localScale.x, localScale.y);
-        }
-        else if (rb.velocity.x < 0)
-        {
-            transform.localScale = new Vector2(-localScale.x, localScale.y);
-        }
     }
 }

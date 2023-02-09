@@ -7,26 +7,22 @@ using UnityEngine.InputSystem;
 public class KunaiLauncherScript : MonoBehaviour
 {
     public GameObject player;
-    public Transform firePoint;
     public GameObject kunaiPrefab;
+    public Transform firePoint;
+    public Vector2 direction;
     private float timeBtwLaunchKunai;      
     public float startTimeBtwLaunchKunai = 1f;
-    public bool nowLaunchKunai;
-    public Vector2 direction;
     public float shurikenSpeed;
+    public bool nowLaunchKunai;
   
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if(timeBtwLaunchKunai<=0) nowLaunchKunai=true;
         else timeBtwLaunchKunai-= Time.deltaTime;
 
-//        Debug.Log(player.GetComponent<Rigidbody2D>().velocity);
         
     }
 
-    
-        
     public void OnKunaiAttack(InputAction.CallbackContext ctd3){
 
         if(nowLaunchKunai== true){ 
@@ -41,12 +37,13 @@ public class KunaiLauncherScript : MonoBehaviour
     public void ShootKunai(){
         GameObject bullet = Instantiate(kunaiPrefab,firePoint.position,firePoint.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        Debug.Log("Vettore direzione" + new Vector2(direction.x, direction.y ));
-        Debug.Log("Vettore direzione normalizzato" + new Vector2(direction.normalized.x, direction.normalized.y ));
-        Debug.Log("Vettore direzione con velocità" +new Vector2(direction.x*shurikenSpeed, direction.y*shurikenSpeed ));
-        bulletRb.AddForce( new Vector2(direction.x*shurikenSpeed, direction.y*shurikenSpeed ) , ForceMode2D.Impulse);
+        if(direction!= Vector2.zero){ // if player is moving
+            bulletRb.AddForce( new Vector2(direction.x*shurikenSpeed, direction.y*shurikenSpeed ) , ForceMode2D.Impulse);
+        }
+        else { 
+            bulletRb.AddForce(new Vector2( player.transform.localScale.x * shurikenSpeed, 0 ), ForceMode2D.Impulse); 
+        }
+
     }
-
-
 
 }

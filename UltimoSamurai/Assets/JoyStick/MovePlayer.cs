@@ -5,27 +5,24 @@
     public class MovePlayer : MonoBehaviour
     {
     
-        public Joystick movementJoystick;
-        public float playerSpeed;
-        private Rigidbody2D rb;
-        public Animator animator;
-        private float player_Scale;
         public GameObject kunaiButton;
+        private Rigidbody2D rb;
+        public Joystick movementJoystick;
+        public Animator animator;
+        public  float playerSpeed;
+        private float player_Scale;
     
         // Start is called before the first frame update
-        void Start()
-        {
+        void Start(){
             rb = GetComponent<Rigidbody2D>();
             player_Scale= transform.localScale.x;
         }
     
         // Update is called once per frame
-        void FixedUpdate()
-        {
-            if(movementJoystick.joystickVec.y != 0 || movementJoystick.joystickVec.x != 0) // se mi sto muovendo 
+        void FixedUpdate() {
+            if(movementJoystick.joystickVec.y != 0 || movementJoystick.joystickVec.x != 0) // player is moving
             {
-                kunaiButton.SetActive(true);
-                
+                /* Flip Sprite*/
                 if(movementJoystick.joystickVec.x>0)
                 {
                     
@@ -41,10 +38,9 @@
                     rb.velocity = new Vector2(movementJoystick.joystickVec.x * playerSpeed * Time.deltaTime, movementJoystick.joystickVec.y * playerSpeed * Time.deltaTime);
                 }
             }
-            else // se non mi sto muovendo
+            else // player is not moving
             {
-                kunaiButton.SetActive(false);
-                animator.SetFloat("Speed",0);
+                animator.SetFloat("Speed",0);  // set animation parameters to 0 
                 rb.velocity = Vector2.zero;
             }
         }

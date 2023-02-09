@@ -19,7 +19,7 @@ public class BaseEnemyScript : MonoBehaviour
     public AudioSource attackSound;
 
 
-    // attack variables
+    /* Attack variables */ 
     public Transform enemyAttackPoint;
     public float attackrange=1;
     public int attackDamage= 20;
@@ -43,34 +43,11 @@ public class BaseEnemyScript : MonoBehaviour
         if(timeBtwAttack<=0 )  Attack();
         else timeBtwAttack-= Time.deltaTime;
 
-        //if( canAttack()) Attack();
-        //else timeBtwAttack -= Time.deltaTime;
-
         if( currentHealth <= 0 ) enemy.transform.GetComponent<BaseEnemyMovement>().enabled= false;
 
     }
 
-    /*
-    private bool canAttack() {
 
-        startTimeBtwAttack= Random.Range(2.0f,4.0f);
-        probabilityOfAttack = Random.Range(0,10);
-
-        // If enemy in range of player        
-        if((((target.transform.position.x-enemy.transform.position.x<= 1) 
-             && (target.transform.position.x - enemy.transform.position.x>= -1))
-                                             &&
-                    ((target.transform.position.y-enemy.transform.position.y<= 1) 
-                       && (target.transform.position.y - enemy.transform.position.y>= -1))
-                            && probabilityOfAttack<=7)
-                            && timeBtwAttack <= 0)
-                            {
-                                return true;
-                            }
-        return false;
-
-    }
-    */
 
     public void TakeDamage(int damage){
 
@@ -90,34 +67,23 @@ public class BaseEnemyScript : MonoBehaviour
 
     void Die(){
 
-        // Decrease player's darkness
-        playerGameObject.GetComponent<Player>().decreaseDarkness();
-
         // Death animation
         GetComponent<Collider2D>().enabled=false;
 
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
+        // Deactivate enemy movement
         GetComponent<BaseEnemyMovement>().enabled=false;
-
+        // Update wave system kill count
         WaveSystem.GetComponent<WaveSystemScript>().EnemyKilled();
-        Destroy(enemy,2.5f);
-        //Vector2 deathPosition = transform.position;
+        Destroy(enemy,2.5f); // destroy sprite
 
     }
-/*
-    void Attack() {
-        
-        timeBtwAttack = startTimeBtwAttack;
-        // Start attack animation
-        animator.SetTrigger("attack");
 
-    }
-*/
     
     void Attack(){
 // sostituire con OnCollisionEnter
-        startTimeBtwAttack= Random.Range(2.0f,4.0f);
+        startTimeBtwAttack= Random.Range(1.0f,3.0f);
         probabilityOfAttack = Random.Range(0,10);
         if( ((target.transform.position.x-enemy.transform.position.x<= 1.5f) 
              && ( target.transform.position.x - enemy.transform.position.x>= -1.5f))
@@ -126,7 +92,6 @@ public class BaseEnemyScript : MonoBehaviour
                        && ( target.transform.position.y - enemy.transform.position.y>= -1.5f))
                             && probabilityOfAttack<=7 )
                  {
-                    Debug.Log("Entro nell'if dell'attacco");
                     timeBtwAttack = startTimeBtwAttack;
                     // start attack animation
                     animator.SetTrigger("attack");
@@ -164,7 +129,7 @@ public class BaseEnemyScript : MonoBehaviour
 
     public void DropCoin(){
 
-        int dropCoin = Random.Range(0,10);
+        int dropCoin = Random.Range(0,30);
         if(dropCoin<=5+playerGameObject.GetComponent<Player>().GetLuck()){
             Instantiate(CoinGameObject,transform.position, Quaternion.identity);//parametri: game object da instanziare; posizione ; rotazione 
         }

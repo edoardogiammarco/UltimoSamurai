@@ -6,23 +6,23 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public GameObject playerGameObject;
-    private BoxCollider2D boxCollider;
-    private Vector3 moveDelta;
-    private int currHealth;
-    public int maxHealth;
-    public Animator animator;
-    public int startDarkness= 0;
-    public int currDarkness;
     public GameObject healthBar;
     public GameObject darknessBar;
-    /* disaccorpare tutti gli audio*/ 
+    public Animator animator;
+    private Vector3 moveDelta;
+    private BoxCollider2D boxCollider;
+    private int currHealth;
+    public  int maxHealth;
+    public  int startDarkness= 0;
+    public  int currDarkness;
+    private int currCoin;
+    public  int Luck;
+    public bool isPlayerAlive;
+    /* Audio Variables */
     public AudioSource coinTaken;
     public AudioSource runningSound;
     public AudioSource takeHitSound;
     public AudioSource deathSound;
-    private int currCoin;
-    public int Luck;
-    public bool isPlayerAlive;
 
     // Start is called before the first frame update
     private void Start(){
@@ -51,30 +51,30 @@ public class Player : MonoBehaviour
         healthBar.GetComponent<HealthBarScript>().SetHealth(currHealth);
         animator.SetTrigger("isHurt");
         if(currHealth<=0){
-            die();
+            Die();
         }
 
     }
-    public void die(){
+    public void Die(){
         isPlayerAlive = false;
-        animator.SetBool("isAlive",false);
-        animator.SetTrigger("death");
-        GetComponent<MovePlayer>().enabled = false;
-        deathSound.Play();
+        animator.SetBool("isAlive",false);   
+        animator.SetTrigger("death");    // set variables for animator
+        GetComponent<MovePlayer>().enabled = false;  // player cant move anymore...
+        deathSound.Play();  // last breath....
     }
 
-    public void incrementDarkness(){
-        currDarkness+= 10;
-        darknessBar.GetComponent<HealthBarScript>().SetDarkness(currDarkness);
-    }
 
-    public void CoinCollected(){
+    public void CoinCollected(){   // Update current coin and coin counter text
         coinTaken.Play();
         currCoin = currCoin +1 ;
         playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(currCoin);
 
     }
 
+    public void incrementDarkness(){
+        currDarkness+= 10;
+        darknessBar.GetComponent<HealthBarScript>().SetDarkness(currDarkness);
+    }
     public void decreaseDarkness() {
 
         int darknessToDecrease = 0;
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         if(currDarkness >=10) {
             int value1 = 5;
             int value2 = 10;
-            // Picking random to decrease from 5 - 10 every time an enemy is killed
+            // Picking random to decrease from 5 - 10 every time a critical hit is performed
             darknessToDecrease = Random.value < 0.5f ? value1 : value2;
         }
         else if (currDarkness == 5) {
@@ -94,6 +94,7 @@ public class Player : MonoBehaviour
         darknessBar.GetComponent<HealthBarScript>().SetDarkness(currDarkness);
     }
 
+    /************Shop and Coin Counter Methods ************/
 
     public int getCurrentCoin(){
         return currCoin;
@@ -101,10 +102,10 @@ public class Player : MonoBehaviour
     public void SetCurrentCoin(int actualCoin){
         currCoin = actualCoin;
     }
-
-    public void SetMaxHealth(int newMaxHealth){
+    
+    public void SetMaxHealth(int newMaxHealth){ 
         maxHealth = newMaxHealth;
-    }
+     }
     public int CurrentMaxHealth(){
         return maxHealth;
     }
@@ -116,6 +117,8 @@ public class Player : MonoBehaviour
         return Luck;
     }
 
+    /************Sounds Methods************/ 
+
     public void PlayRunningSound () {
         if(!runningSound.isPlaying){
              runningSound.Play();
@@ -125,8 +128,5 @@ public class Player : MonoBehaviour
         runningSound.Pause();
     }
 
-    public void TakeHitSound(){
-     //   takeHitSound.Play();
-    }
-    
+
 }

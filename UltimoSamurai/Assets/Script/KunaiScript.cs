@@ -6,14 +6,9 @@ public class KunaiScript : MonoBehaviour
 {
   
     // Start is called before the first frame update
-    void Start()
-    {
-
- 
-    Destroy(gameObject,5f);     
-
-
-        
+    
+    void Start(){
+        Destroy(gameObject,5f);     
     }
 
 
@@ -21,7 +16,7 @@ public class KunaiScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D enemyCollider){
 
         if(enemyCollider.tag == "enemy"){
-            enemyCollider.GetComponent<BaseEnemyScript>().TakeDamage(5);
+            enemyCollider.GetComponent<BaseEnemyScript>().TakeDamage(10);
         }
 
     }

@@ -31,6 +31,68 @@ Transform:
   m_Father: {fileID: 8646316460666705822}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3855269156975645240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5353175371385088390}
+  m_Layer: 9
+  m_Name: Attack1CriticalRectangleOppositeCorner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5353175371385088390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3855269156975645240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.51, y: 0.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8646316460666705822}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6432709313549267350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4947534485473768472}
+  m_Layer: 9
+  m_Name: Attack1CriticalRectangleCorner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4947534485473768472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6432709313549267350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.51, y: -0.31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8646316460666705822}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8646316460093470897
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +167,8 @@ Transform:
   - {fileID: 8646316460921264616}
   - {fileID: 8646316460700009003}
   - {fileID: 5213335479677609200}
+  - {fileID: 4947534485473768472}
+  - {fileID: 5353175371385088390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,6 +364,8 @@ MonoBehaviour:
   currCriticalHitProbability: 0
   attack1RectangleCorner: {fileID: 8646316460853620507}
   attack1RectangleOppositeCorner: {fileID: 8646316460921264616}
+  attack1CriticalRectangleCorner: {fileID: 4947534485473768472}
+  attack1CriticalRectangleOppositeCorner: {fileID: 5353175371385088390}
   attack2RectangleCorner: {fileID: 8646316460093470896}
   attack2RectangleOppositeCorner: {fileID: 8646316460700009003}
 --- !u!114 &8646316460666705895
