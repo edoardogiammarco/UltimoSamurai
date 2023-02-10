@@ -20,7 +20,7 @@ public class GameMaster : MonoBehaviour
     }
 
     public void GoToLoginScene(){
-        SceneManager.LoadScene("LoginScene");
+        SceneManager.LoadScene("AuthScene");
     }
     // Start is called before the first frame update
     void Start()
