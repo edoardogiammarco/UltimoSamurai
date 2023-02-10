@@ -12,6 +12,7 @@ public class WaveSystemScript : MonoBehaviour
     public const int mappaMaxY = 110;
     
     public GameObject enemyPrefab;
+    private Animator animator;
     private int waveCount = 1;
     private int enemyCountOnMap;
     private int killedEnemies = 0;              //enemies killed in current wave
@@ -19,7 +20,6 @@ public class WaveSystemScript : MonoBehaviour
     private int waveEnemies = 1;
     private bool enemiesInMap;
 
-    private Animator animator;
 
     // Start is called before the first frame update
     private void Start()
@@ -38,9 +38,10 @@ public class WaveSystemScript : MonoBehaviour
     private IEnumerator BeginWave()
     {
             yield return new WaitForSeconds(5);
-
+            
             // Adding more enemies for next wave
             waveEnemies = waveCount;
+
             for (int i=0; i < waveEnemies; i++)
             {
                 SpawnEnemy();

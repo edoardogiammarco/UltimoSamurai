@@ -6,6 +6,7 @@ public class GameMaster : MonoBehaviour
 {
 
     public AudioSource mainTheme;
+    public GameObject tutorialWindow;
 
 
     public void GoToGameScene(){
@@ -22,6 +23,16 @@ public class GameMaster : MonoBehaviour
     public void GoToLoginScene(){
         SceneManager.LoadScene("AuthScene");
     }
+
+    public void ActiveTutorialWindow(){
+        tutorialWindow.SetActive(true);
+
+    }
+
+    public void DeactiveTutorialWindow(){
+        tutorialWindow.SetActive(false);
+
+    }    
     // Start is called before the first frame update
     void Start()
     {
