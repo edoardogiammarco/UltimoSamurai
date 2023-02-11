@@ -15,6 +15,7 @@ public class WaveSystemScript : MonoBehaviour
     public GameObject enemyPrefab;
     private Animator animator;
     public TextMeshProUGUI waveCounterText;
+    public TextMeshProUGUI enemyKilledCount;
 
     private int waveCount = 1;
     private int enemyCountOnMap;
@@ -29,6 +30,7 @@ public class WaveSystemScript : MonoBehaviour
     {   
         animator = GetComponent<Animator>();
         //waveCounterText = GetComponent<TMPro.TextMeshProUGUI>();
+        enemyKilledCount = GameObject.Find("EnemyKilledCount").GetComponent<TMPro.TextMeshProUGUI>();
         waveCounterText = GameObject.Find("WaveCount").GetComponent<TMPro.TextMeshProUGUI>();
         enemiesInMap = false;
         Debug.Log("Spawning wave 1");
@@ -100,6 +102,9 @@ public class WaveSystemScript : MonoBehaviour
                   "Total enemy killed:"+ totalKilledEnemies);
         if(enemiesInMap && (killedEnemies == enemyCountOnMap))
         {
+            // Refresh enemy killed count
+            enemyKilledCount.text = totalKilledEnemies.ToString();
+
             animator.SetTrigger("WaveComplete");
             // Reset variables
             Debug.Log("Reset variables");
