@@ -41,7 +41,7 @@ public class KunaiLauncherScript : MonoBehaviour
             bulletRb.AddForce( new Vector2(direction.x*shurikenSpeed, direction.y*shurikenSpeed ) , ForceMode2D.Impulse);
         }
         else { 
-            bulletRb.AddForce(new Vector2( player.transform.localScale.x * shurikenSpeed, 0 ), ForceMode2D.Impulse); 
+            bulletRb.AddForce(new Vector2( player.transform.localScale.x * shurikenSpeed*3, 0 ), ForceMode2D.Impulse); 
         }
 
     }
