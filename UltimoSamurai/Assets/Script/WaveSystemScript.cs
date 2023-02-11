@@ -18,6 +18,10 @@ public class WaveSystemScript : MonoBehaviour
     public TextMeshProUGUI enemyKilledCount;
     public TextMeshProUGUI countdownText;
 
+    public float shrinkSpeed = 0.005f;
+    public int fontSizeMin = 0;
+    public int fontSizeMax = 100;
+
     private int waveCount = 1;
     private int enemyCountOnMap;
     private int killedEnemies = 0;              //enemies killed in current wave
@@ -49,7 +53,7 @@ public class WaveSystemScript : MonoBehaviour
     }
 
     private IEnumerator BeginWave()
-    {
+    {   
             yield return new WaitForSeconds(4);
             countdownText.text = "3";
             yield return new WaitForSeconds(1);
@@ -58,8 +62,8 @@ public class WaveSystemScript : MonoBehaviour
             countdownText.text = "1";
             yield return new WaitForSeconds(1);
             countdownText.text = "GO!";
-            yield return new WaitForSeconds(1);
-            countdownText.text = "";
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(ShrinkTextSize());
             
             // Refresh the wave counter text
             waveCounterText.text = "Wave: " + waveCount;
@@ -139,6 +143,17 @@ public class WaveSystemScript : MonoBehaviour
             
             StartCoroutine(BeginWave());
         }
+    }
+
+    private IEnumerator ShrinkTextSize()
+    {
+        while (countdownText.fontSize > fontSizeMin)
+        {
+            countdownText.fontSize -= 1;
+            yield return new WaitForSeconds(shrinkSpeed);
+        }
+        countdownText.text = "";
+        countdownText.fontSize = fontSizeMax;
     }
 
     private IEnumerator WaveComplete()
