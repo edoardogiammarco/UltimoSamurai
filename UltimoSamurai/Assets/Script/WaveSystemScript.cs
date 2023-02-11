@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WaveSystemScript : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class WaveSystemScript : MonoBehaviour
     
     public GameObject enemyPrefab;
     private Animator animator;
+    public TextMeshProUGUI waveCounterText;
+
     private int waveCount = 1;
     private int enemyCountOnMap;
     private int killedEnemies = 0;              //enemies killed in current wave
@@ -25,6 +28,8 @@ public class WaveSystemScript : MonoBehaviour
     private void Start()
     {   
         animator = GetComponent<Animator>();
+        //waveCounterText = GetComponent<TMPro.TextMeshProUGUI>();
+        waveCounterText = GameObject.Find("WaveCount").GetComponent<TMPro.TextMeshProUGUI>();
         enemiesInMap = false;
         Debug.Log("Spawning wave 1");
         StartCoroutine(BeginWave());
@@ -48,7 +53,11 @@ public class WaveSystemScript : MonoBehaviour
                 yield return new WaitForSeconds(Random.Range(0.5f, 3f));
                 Debug.Log("Enemy spawned in wave " + waveCount);
             }
+
             Debug.Log("Wave number " + waveCount + " finished spawning");
+            
+            // Refresh the wave counter text
+            waveCounterText.text = "Wave: " + waveCount;
     }
 
     public void areEnemiesInMap() {
