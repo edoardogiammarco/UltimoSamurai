@@ -1913,7 +1913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Each time a "critical hit"  is performed , the darkness bar will decrease
+  m_text: 'Each time a "critical hit"  is performed, the "darkness bar" will decrease
     its value by a certain amount. The chance of a critical hit can be increased
     by choosing to buy the relative power up sold by the wizard that hides somewhere
     in the map '
