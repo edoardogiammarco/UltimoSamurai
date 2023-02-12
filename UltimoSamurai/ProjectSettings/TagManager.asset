@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - enemy
-  - Coin
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -15,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - Blocking
-  - Actor
-  - Enemy
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -42,25 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Floor
-    uniqueID: 3449997763
-    locked: 0
-  - name: Player
-    uniqueID: 4018846067
-    locked: 0
-  - name: Objects
-    uniqueID: 2965816411
-    locked: 0
-  - name: UI
-    uniqueID: 4113214281
-    locked: 0
-  - name: New Layer 5
-    uniqueID: 715349839
-    locked: 0
-  - name: New Layer 6
-    uniqueID: 462663935
-    locked: 0
-  - name: Collisions(must be set to transparent)
-    uniqueID: 1200245661
     locked: 0
