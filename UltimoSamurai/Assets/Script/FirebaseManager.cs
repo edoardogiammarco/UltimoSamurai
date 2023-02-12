@@ -103,9 +103,9 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(UpdateUsernameAuth(usernameField.text));
         StartCoroutine(UpdateUsernameDatabase(usernameField.text));
 
-        StartCoroutine(UpdateXp(int.Parse(pointsField.text)));
+        StartCoroutine(UpdatePoints(int.Parse(pointsField.text)));
         StartCoroutine(UpdateKills(int.Parse(killsField.text)));
-        StartCoroutine(UpdateDeaths(int.Parse(wavesField.text)));
+        StartCoroutine(UpdateWaves(int.Parse(wavesField.text)));
     }
     //Function for the scoreboard button
     public void ScoreboardButton()
@@ -285,10 +285,10 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateXp(int _xp)
+    private IEnumerator UpdatePoints(int _points)
     {
-        //Set the currently logged in user xp
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("xp").SetValueAsync(_xp);
+        //Set the currently logged in user points
+        var DBTask = DBreference.Child("users").Child(User.UserId).Child("points").SetValueAsync(_points);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -298,7 +298,7 @@ public class FirebaseManager : MonoBehaviour
         }
         else
         {
-            //Xp is now updated
+            //points is now updated
         }
     }
 
@@ -319,10 +319,10 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateDeaths(int _deaths)
+    private IEnumerator UpdateWaves(int _waves)
     {
-        //Set the currently logged in user deaths
-        var DBTask = DBreference.Child("users").Child(User.UserId).Child("deaths").SetValueAsync(_deaths);
+        //Set the currently logged in user waves
+        var DBTask = DBreference.Child("users").Child(User.UserId).Child("waves").SetValueAsync(_waves);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -332,7 +332,7 @@ public class FirebaseManager : MonoBehaviour
         }
         else
         {
-            //Deaths are now updated
+            //Waves are now updated
         }
     }
 
@@ -392,12 +392,12 @@ public class FirebaseManager : MonoBehaviour
             {
                 string username = childSnapshot.Child("username").Value.ToString();
                 int kills = int.Parse(childSnapshot.Child("kills").Value.ToString());
-                int deaths = int.Parse(childSnapshot.Child("deaths").Value.ToString());
-                int xp = int.Parse(childSnapshot.Child("xp").Value.ToString());
+                int waves = int.Parse(childSnapshot.Child("waves").Value.ToString());
+                int points = int.Parse(childSnapshot.Child("points").Value.ToString());
 
                 //Instantiate new scoreboard elements
                 GameObject scoreboardElement = Instantiate(scoreElement, scoreboardContent);
-                scoreboardElement.GetComponent<ScoreElement>().NewScoreElement(username, kills, deaths, xp);
+                scoreboardElement.GetComponent<ScoreElement>().NewScoreElement(username, kills, waves, points);
             }
 
             //Go to scoareboard screen
