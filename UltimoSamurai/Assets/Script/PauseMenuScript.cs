@@ -11,9 +11,6 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject pauseMenu;
     
 
-
-
-
     public void onClickResumeButton(){
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;

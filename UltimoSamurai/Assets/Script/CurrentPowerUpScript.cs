@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
+
+ /*This script show the text of the current power up on the shop*/ 
+
+
 public class CurrentPowerUpScript : MonoBehaviour
 {
     public GameObject player;
     public GameObject enemy;
     public TMP_Text myPowerUpText;
-    // Start is called before the first frame update
+   
     void Start()
     {
         myPowerUpText.text =   "       Current Stats" + "\n" + "  Luck:"           +  player.GetComponent<Player>().GetLuck()
@@ -18,11 +23,7 @@ public class CurrentPowerUpScript : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void updateCurrentPowerUpState (){
         myPowerUpText.text = "       Current Stats" + "\n" + "  Luck:"           +  player.GetComponent<Player>().GetLuck()

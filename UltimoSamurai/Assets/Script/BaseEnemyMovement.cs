@@ -5,45 +5,35 @@ using Pathfinding;
 
 public class BaseEnemyMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public  Animator animator;   
+    private Rigidbody2D rb;   
     private Vector3 localScale;
-    public Animator animator;
     private float moveSpeed;
-    public Transform target;                        //AIPathfinder
-    Path path;                                      //AIPathfinder
-    public float nextWaypointDistance = 1f;         //AIPathfinder
-    int currentWaypoint = 0;                        //AIPathfinder
-    bool reachedEndOfPath = false;                  //AIPathfinder
-    Seeker seeker;                                  //AIPathfinder
-    // Start is called before the first frame update
+
+
+
+    public Transform   target;                                    //AIPathfinder
+    Path               path;                                      //AIPathfinder
+    Seeker             seeker;                                    //AIPathfinder
+    public float       nextWaypointDistance = 1f;                 //AIPathfinder
+    int                currentWaypoint = 0;                       //AIPathfinder
+    bool               reachedEndOfPath = false;                  //AIPathfinder
+    
+  
+  
+  
     void Start(){
         
         seeker = GetComponent<Seeker>();            //AIPathfinder
         rb = GetComponent<Rigidbody2D>();           //AIPathfinder
+        moveSpeed = 360f;                           // set speed of base enemy
+        localScale = transform.localScale;
         InvokeRepeating("UpdatePath", 0f, .5f);     //AIPathfinder
         
-        //player = FindObjectOfType(typeof(Player)) as Player;
-        moveSpeed = 360f;
-        localScale = transform.localScale;
         
     }
-
-
-    /*AIPathfinder Methods*/
-    void UpdatePath() {
-        if (seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
-    }
-
-    void OnPathComplete(Path p) {
-        if (!p.error) {
-            path = p;
-            currentWaypoint = 0;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+    
+    void Update(){
         /*Change sprite direction*/
         if (rb.velocity.x > 0)
         {
@@ -78,5 +68,22 @@ public class BaseEnemyMovement : MonoBehaviour
         if(rb.velocity.x!= 0 || rb.velocity.y!=0)         animator.SetFloat("speed",1f);
        
        
+    }
+
+
+
+
+    /***********AIPathfinder Methods***********/
+   
+   
+    void UpdatePath() {
+        if (seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
+    }
+
+    void OnPathComplete(Path p) {
+        if (!p.error) {
+            path = p;
+            currentWaypoint = 0;
+        }
     }
 }

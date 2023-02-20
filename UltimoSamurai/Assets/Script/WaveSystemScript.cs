@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class WaveSystemScript : MonoBehaviour
 {
-
+    
+    /**** Map Boundaries****/
     public const int mappaMinX = 77;
-    public const int mappaMaxX = 186;
+    public const int mappaMaxX = 186;    
     public const int mappaMinY = 0;
     public const int mappaMaxY = 110;
     
@@ -16,7 +17,7 @@ public class WaveSystemScript : MonoBehaviour
     private int waveCount = 1;
     private int enemyCountOnMap;
     private int killedEnemies = 0;              //enemies killed in current wave
-    private int totalKilledEnemies = 0;
+    private int totalKilledEnemies = 0;        
     private int waveEnemies = 1;
     private bool enemiesInMap;
 
@@ -75,16 +76,14 @@ public class WaveSystemScript : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy()
-    {
+    public void SpawnEnemy(){
         Vector3 spawnPos = new Vector3(Random.Range(mappaMinX, mappaMaxX), Random.Range(mappaMinY, mappaMaxY), 0);
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
         enemyCountOnMap++;
         Debug.Log("Enemy spawned, enemyCountOnMap="+ enemyCountOnMap);
     }
 
-    public void EnemyKilled()
-    {
+    public void EnemyKilled(){
         totalKilledEnemies++;
         killedEnemies++;
         Debug.Log("Wave enemies killed:"+ killedEnemies + "/" + waveEnemies + "\n" + 
@@ -107,79 +106,3 @@ public class WaveSystemScript : MonoBehaviour
     }
 
 }
-/*
-using UnityEngine;
-using UnityEngine.UI;
-
-[System.Serializable]
-
-public class Wave
-{
-    public string waveName;
-    public int noOfEnemies;
-    public GameObject[] typeOfEnemies;
-    public float spawnInterval;
-}
-
-public class WaveSpawnner : MonoBehaviour
-
-{
-
-    public Wave[] waves;
-    public Animator animator;
-    public Text waveName;
-    private Wave currentWave;
-    private int currentWaveNumber;
-    private float nextSpawnTime;
-    private bool canSpawn = true;
-    private bool canAnimate = false;
-
-    
-
-    private void Update()
-
-    {
-        currentWave = waves[currentWaveNumber];
-        SpawnWave();
-        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        if (totalEnemies.Length == 0  )
-        {
-            if ( currentWaveNumber + 1 != waves.Length )
-            {
-                if ( canAnimate )
-                {
-                    waveName.text = waves[currentWaveNumber + 1].waveName;
-                    animator.SetTrigger("WaveComplete");
-                    canAnimate = false;
-                }
-            } else {
-                Debug.Log("GameFinish");
-            }
-        }
-    }
-
-    void SpawnNextWave()
-    {
-        currentWaveNumber++;
-        canSpawn = true;
-    }
-
-    void SpawnWave()
-    {
-        if (canSpawn && nextSpawnTime < Time.time)
-        {
-            GameObject randomEnemy = currentWave.typeOfEnemies[Random.Range(0, currentWave.typeOfEnemies.Length)];
-            Vector3 randomPosition = new Vector3(Random.Range(0, 40), 0, Random.Range(0, 30));
-            Instantiate(randomEnemy, randomPosition, Quaternion.identity);
-            currentWave.noOfEnemies--;
-            nextSpawnTime = Time.time + currentWave.spawnInterval;
-
-            if (currentWave.noOfEnemies == 0)
-            {
-                canSpawn = false;
-                canAnimate = true;
-            }
-        }
-    }
-}*/

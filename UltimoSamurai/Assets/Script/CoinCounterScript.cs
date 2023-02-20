@@ -7,7 +7,9 @@ public class CoinCounterScript : MonoBehaviour
 {
     public TMP_Text myScoreText;
     private int scoreNum;
-    // Start is called before the first frame update
+    
+    /*This script initialize and update the coin counter text*/
+
     void Start()
     {
         scoreNum = 0;

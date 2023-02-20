@@ -39,11 +39,11 @@ public class BaseEnemyScript : MonoBehaviour
 
     void FixedUpdate() {
 
-        //check if the enemy is near the player and attack
+        // If time between the last attack is passed , attack , else wait for it
         if(timeBtwAttack<=0 )  Attack();
         else timeBtwAttack-= Time.deltaTime;
 
-        if( currentHealth <= 0 ) enemy.transform.GetComponent<BaseEnemyMovement>().enabled= false;
+        if( currentHealth <= 0 ) enemy.transform.GetComponent<BaseEnemyMovement>().enabled= false; // stop seeking player when enemy is dead
 
     }
 
@@ -82,7 +82,7 @@ public class BaseEnemyScript : MonoBehaviour
 
     
     void Attack(){
-// sostituire con OnCollisionEnter
+        // if I'm near to the player  , Attack!
         startTimeBtwAttack= Random.Range(1.0f,3.0f);
         probabilityOfAttack = Random.Range(0,10);
         if( ((target.transform.position.x-enemy.transform.position.x<= 1.5f) 
@@ -114,6 +114,7 @@ public class BaseEnemyScript : MonoBehaviour
 
     }
 
+    // draws the sphere of enemy attack point // 
     void OnDrawGizmosSelected(){
 
         if ( enemyAttackPoint == null) return;
@@ -121,21 +122,27 @@ public class BaseEnemyScript : MonoBehaviour
         
     }
 
+    
     void startKnockBack(){
 
         transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
     
     }
 
+
+    /* drop a coin with a certain probability when enemy dies*/
     public void DropCoin(){
 
-        int dropCoin = Random.Range(0,30);
+        int dropCoin = Random.Range(0,10);
         if(dropCoin<=5+playerGameObject.GetComponent<Player>().GetLuck()){
-            Instantiate(CoinGameObject,transform.position, Quaternion.identity);//parametri: game object da instanziare; posizione ; rotazione 
+            Instantiate(CoinGameObject,transform.position, Quaternion.identity);
         }
 
     } 
 
+
+    /***********Sound Methods************/
+    
     public void PlayPoofSound(){
 
         PoofSound.Play();

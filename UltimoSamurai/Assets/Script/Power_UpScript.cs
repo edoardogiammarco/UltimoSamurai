@@ -10,13 +10,14 @@ public class Power_UpScript : MonoBehaviour
     public GameObject shop;
     public GameObject healthBar;
     public GameObject currentPowerUpStatus;
+    public AudioSource achievementUnlocked;
     private int luckPrice = 5;
     private int strengthPrice = 5;
     private int criticalHitPrice= 3;
     private int incrementHealthPrice = 15;
     private int newCurrentCoin;
     private int newCurrentMaxHealth;
-    public AudioSource achievementUnlocked;
+    
     void Start(){
         shop.SetActive(false);
     }

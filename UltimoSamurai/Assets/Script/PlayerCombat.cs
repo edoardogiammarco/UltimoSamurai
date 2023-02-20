@@ -18,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
     public AudioSource takeHitSound;
     public AudioSource attack1Sound;
     public AudioSource attack2Sound;
+    public AudioSource critAttackSound;
     
     // manage attack flow
     private float timeBtwAttack1;      
@@ -50,8 +51,8 @@ public class PlayerCombat : MonoBehaviour
    // Update is called once per frame
    public void Update(){       
      
-        if(timeBtwAttack1<=0) nowAttack1=true;
-        else timeBtwAttack1-= Time.deltaTime;
+        if(timeBtwAttack1<=0) nowAttack1=true;  // if enough time is passed since the last attack , then attack 
+        else timeBtwAttack1-= Time.deltaTime;   // not enough time is passed , wait!
       
 
         if(timeBtwAttack2<=0){
@@ -82,6 +83,7 @@ public class PlayerCombat : MonoBehaviour
         
     
     }
+    /****This and other "DuringAnimation" methods  are called by an event on a certain frame of the animation*****/
     public void Attack1DuringAnimation(){
 
              /*Detect enemies in range of attack*/
@@ -100,7 +102,7 @@ public class PlayerCombat : MonoBehaviour
 
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack1CriticalRectangleCorner.position,attack1CriticalRectangleOppositeCorner.position,enemyLayers);
-             attack1Sound.Play();
+             critAttackSound.Play();
              
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){

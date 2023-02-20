@@ -10,7 +10,6 @@ public class KnockBackScript : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb2d;
 
-
     [SerializeField]
     private float strength=16 , delay = 0.15f;
     public UnityEvent OnBegin, OnDone;
@@ -30,17 +29,7 @@ public class KnockBackScript : MonoBehaviour
         OnDone?.Invoke();
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
 }
