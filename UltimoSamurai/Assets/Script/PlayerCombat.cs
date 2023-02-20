@@ -18,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
     public AudioSource takeHitSound;
     public AudioSource attack1Sound;
     public AudioSource attack2Sound;
+    public AudioSource attackCritSound;
     
     // manage attack flow
     private float timeBtwAttack1;      
@@ -100,7 +101,7 @@ public class PlayerCombat : MonoBehaviour
 
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack1CriticalRectangleCorner.position,attack1CriticalRectangleOppositeCorner.position,enemyLayers);
-             attack1Sound.Play();
+             attackCritSound.Play();
              
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
