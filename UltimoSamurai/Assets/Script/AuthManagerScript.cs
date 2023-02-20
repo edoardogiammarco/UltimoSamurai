@@ -4,8 +4,6 @@ using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using TMPro;
-using UnityEngine.SceneManagement;
-
 public class AuthManagerScript : MonoBehaviour
 {
     //Firebase variables
@@ -110,9 +108,6 @@ public class AuthManagerScript : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
-            // User is logged in
-            // Load the "Main Menu" scene
-            SceneManager.LoadScene("Main Menu");
         }
     }
 
