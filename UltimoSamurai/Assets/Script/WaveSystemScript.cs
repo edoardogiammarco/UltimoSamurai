@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WaveSystemScript : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class WaveSystemScript : MonoBehaviour
     
     public GameObject enemyPrefab;
     private Animator animator;
+    public TextMeshProUGUI waveCounterText;
+    public TextMeshProUGUI enemyKilledCount;
+    public TextMeshProUGUI countdownText;
+
+    public float shrinkSpeed = 0.005f;
+    public int fontSizeMin = 0;
+    public int fontSizeMax = 100;
+
     private int waveCount = 1;
     private int enemyCountOnMap;
     private int killedEnemies = 0;              //enemies killed in current wave
@@ -26,8 +35,16 @@ public class WaveSystemScript : MonoBehaviour
     private void Start()
     {   
         animator = GetComponent<Animator>();
+        //waveCounterText = GetComponent<TMPro.TextMeshProUGUI>();
+        enemyKilledCount = GameObject.Find("EnemyKilledCount").GetComponent<TMPro.TextMeshProUGUI>();
+        waveCounterText = GameObject.Find("WaveCount").GetComponent<TMPro.TextMeshProUGUI>();
+        countdownText = GameObject.Find("Countdown").GetComponent<TMPro.TextMeshProUGUI>();
         enemiesInMap = false;
+
         Debug.Log("Spawning wave 1");
+        countdownText.text = "Get Ready";
+        // Refresh the wave counter text
+        waveCounterText.text = "Wave: " + waveCount;
         StartCoroutine(BeginWave());
     }
 
@@ -37,9 +54,21 @@ public class WaveSystemScript : MonoBehaviour
     }
 
     private IEnumerator BeginWave()
-    {
-            yield return new WaitForSeconds(5);
+    {   
+            yield return new WaitForSeconds(4);
+            countdownText.text = "3";
+            yield return new WaitForSeconds(1);
+            countdownText.text = "2";
+            yield return new WaitForSeconds(1);
+            countdownText.text = "1";
+            yield return new WaitForSeconds(1);
+            countdownText.text = "GO!";
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(ShrinkTextSize());
             
+            // Refresh the wave counter text
+            waveCounterText.text = "Wave: " + waveCount;
+
             // Adding more enemies for next wave
             waveEnemies = waveCount;
 
@@ -49,7 +78,10 @@ public class WaveSystemScript : MonoBehaviour
                 yield return new WaitForSeconds(Random.Range(0.5f, 3f));
                 Debug.Log("Enemy spawned in wave " + waveCount);
             }
+
             Debug.Log("Wave number " + waveCount + " finished spawning");
+            
+            
     }
 
     public void areEnemiesInMap() {
@@ -86,23 +118,47 @@ public class WaveSystemScript : MonoBehaviour
     public void EnemyKilled(){
         totalKilledEnemies++;
         killedEnemies++;
+        
+        // Refresh enemy killed count
+        enemyKilledCount.text = totalKilledEnemies.ToString();
+
         Debug.Log("Wave enemies killed:"+ killedEnemies + "/" + waveEnemies + "\n" + 
                   "Total enemy killed:"+ totalKilledEnemies);
+        
         if(enemiesInMap && (killedEnemies == enemyCountOnMap))
         {
-            animator.SetTrigger("WaveComplete");
+            //animator.SetTrigger("WaveComplete");
+            StartCoroutine(WaveComplete());
+            
             // Reset variables
             Debug.Log("Reset variables");
             enemiesInMap = false;
             killedEnemies = 0;
             enemyCountOnMap = 0;
 
-
             // Begin new wave
             waveCount++;
             Debug.Log("Spawning wave number " + waveCount);
+            
             StartCoroutine(BeginWave());
         }
+    }
+
+    private IEnumerator ShrinkTextSize()
+    {
+        while (countdownText.fontSize > fontSizeMin)
+        {
+            countdownText.fontSize -= 1;
+            yield return new WaitForSeconds(shrinkSpeed);
+        }
+        countdownText.text = "";
+        countdownText.fontSize = fontSizeMax;
+    }
+
+    private IEnumerator WaveComplete()
+    {
+        yield return new WaitForSeconds(2);
+        countdownText.text = "Wave Complete!";
     }
 
 }

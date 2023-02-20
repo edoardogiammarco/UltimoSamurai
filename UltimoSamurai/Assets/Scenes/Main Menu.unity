@@ -752,8 +752,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Whenever you perform a "devil attack"  , the "darkness bar will increase.
-    If the darkness bar reach the maximum level, the samurai will instantly die
+  m_text: '"Evil attacks" are more powerful than basic attacks, although whenever
+    you perform an "evil attack" , the "darkness bar" will slowly fill up. If the
+    darkness bar reaches the maximum level, the samurai will instantly die'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1912,10 +1913,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Each time a "critical hit"  is performed , the darkness bar will decrease
-    its value of a certain amount. You can increase the chance of a critical hit
-    by purchasing the relative power up buyable from the wizard that hides in the
-    map '
+  m_text: 'Each time a "critical hit"  is performed, the "darkness bar" will decrease
+    its value by a certain amount. The chance of a critical hit can be increased
+    by choosing to buy the relative power up sold by the wizard that hides somewhere
+    in the map '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
