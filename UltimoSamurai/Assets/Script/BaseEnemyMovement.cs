@@ -8,13 +8,15 @@ public class BaseEnemyMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 localScale;
     public Animator animator;
-    private float moveSpeed;
+    public Seeker seeker;                           //AIPathfinder
+    public Path path;                               //AIPathfinder
     public Transform target;                        //AIPathfinder
-    Path path;                                      //AIPathfinder
+    
+    private float moveSpeed;
     public float nextWaypointDistance = 1f;         //AIPathfinder
-    int currentWaypoint = 0;                        //AIPathfinder
-    bool reachedEndOfPath = false;                  //AIPathfinder
-    Seeker seeker;                                  //AIPathfinder
+    private int currentWaypoint = 0;                //AIPathfinder
+    private bool reachedEndOfPath = false;          //AIPathfinder
+    
     // Start is called before the first frame update
     void Start(){
         
@@ -22,23 +24,9 @@ public class BaseEnemyMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();           //AIPathfinder
         InvokeRepeating("UpdatePath", 0f, .5f);     //AIPathfinder
         
-        //player = FindObjectOfType(typeof(Player)) as Player;
         moveSpeed = 500f;
         localScale = transform.localScale;
         
-    }
-
-
-    /*AIPathfinder Methods*/
-    void UpdatePath() {
-        if (seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
-    }
-
-    void OnPathComplete(Path p) {
-        if (!p.error) {
-            path = p;
-            currentWaypoint = 0;
-        }
     }
 
     // Update is called once per frame
@@ -53,6 +41,7 @@ public class BaseEnemyMovement : MonoBehaviour
         {
             transform.localScale = new Vector2(-localScale.x, localScale.y);
         }
+        
         /*START OF AI PATHFINDER SCRIPT*/
         if (path == null) return;
 
@@ -76,7 +65,18 @@ public class BaseEnemyMovement : MonoBehaviour
 
         //check if the enemy is moving
         if(rb.velocity.x!= 0 || rb.velocity.y!=0)         animator.SetFloat("speed",1f);
-       
-       
     }
+
+    /*AIPathfinder Methods*/
+    void UpdatePath() {
+        if (seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
+    }
+
+    void OnPathComplete(Path p) {
+        if (!p.error) {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
 }

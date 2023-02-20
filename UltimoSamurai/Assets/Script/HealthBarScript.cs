@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class HealthBarScript : MonoBehaviour{ 
     
     public Slider slider;
@@ -12,33 +11,38 @@ public class HealthBarScript : MonoBehaviour{
     public Image fill;
     public TMP_Text myHealthPercentualText;
 
-    public void SetMaxHealth(int maxHealth){
+    /* Methods for handling the change in the values of the healthbar and the darkness bar */
+    public void SetMaxHealth(int maxHealth)
+    {
         slider.maxValue= maxHealth;
         slider.value = maxHealth;
         fill.color = gradient.Evaluate(1f);
         myHealthPercentualText.text = "" + maxHealth;
     }
 
-    public void SetHealth ( int health){
+    public void SetHealth ( int health)
+    {
         slider.value = health;
         myHealthPercentualText.text = "" + health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
     
-    public void SetDarkness ( int darkness){
+    public void SetDarkness ( int darkness)
+    {
         slider.value = darkness;
     } 
 
-    public void SetMaxDarkness(int darkness){
+    public void SetMaxDarkness(int darkness)
+    {
         slider.maxValue= 100;
         slider.value = darkness;
     }
-        public void IncreaseMaxHealth(int maxHealth){
+
+    public void IncreaseMaxHealth(int maxHealth)
+    {
         slider.maxValue= maxHealth+50;
         slider.value = maxHealth+50;
         fill.color = gradient.Evaluate(1f);
         myHealthPercentualText.text = "" + (maxHealth+50);
     }
-
-
 }

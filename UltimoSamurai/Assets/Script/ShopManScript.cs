@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShopManScript : MonoBehaviour
 {
-        public GameObject shop;
+    public GameObject shop;
         
     // Start is called before the first frame update
     void Start()
@@ -18,14 +18,14 @@ public class ShopManScript : MonoBehaviour
         
     }
 
-        public void OnTriggerEnter2D ( Collider2D collider){
-        if(collider.tag == "Player"){
-            // apri il menu
+    public void OnTriggerEnter2D (Collider2D collider)
+    {
+        if(collider.tag == "Player")
+        {
+            // Open the menu
             Time.timeScale = 0f;
             
-            shop.SetActive(true);   
-
+            shop.SetActive(true);
         }
-
     }
 }

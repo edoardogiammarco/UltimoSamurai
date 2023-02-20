@@ -6,22 +6,20 @@ using TMPro;
 
 public class WaveSystemScript : MonoBehaviour
 {
-
-    public const int mappaMinX = 77;
-    public const int mappaMaxX = 186;
-    public const int mappaMinY = 0;
-    public const int mappaMaxY = 110;
-    
+    /* GameObject and Component references */
     public GameObject enemyPrefab;
     private Animator animator;
     public TextMeshProUGUI waveCounterText;
     public TextMeshProUGUI enemyKilledCount;
     public TextMeshProUGUI countdownText;
 
-    public float shrinkSpeed = 0.005f;
-    public int fontSizeMin = 0;
-    public int fontSizeMax = 100;
+    /* Map size values DO NOT CHANGE!!! */
+    public const int mappaMinX = 77;
+    public const int mappaMaxX = 186;
+    public const int mappaMinY = 0;
+    public const int mappaMaxY = 110;
 
+    /* WaveSystem variables */
     private int waveCount = 1;
     private int enemyCountOnMap;
     private int killedEnemies = 0;              //enemies killed in current wave
@@ -29,6 +27,10 @@ public class WaveSystemScript : MonoBehaviour
     private int waveEnemies = 1;
     private bool enemiesInMap;
 
+    /* Text animation */
+    public float shrinkSpeed = 0.005f;
+    public int fontSizeMin = 0;
+    public int fontSizeMax = 100;
 
     // Start is called before the first frame update
     private void Start()
@@ -78,13 +80,16 @@ public class WaveSystemScript : MonoBehaviour
                 Debug.Log("Enemy spawned in wave " + waveCount);
             }
 
-            Debug.Log("Wave number " + waveCount + " finished spawning");
-            
-            
+            Debug.Log("Wave number " + waveCount + " finished spawning");       
     }
 
-    public void areEnemiesInMap() {
-
+    /*
+        This method is used in the update method for constantly scanning
+        the map in search of enemies alive, if no enemies are alive a new
+        wave will be spawned.
+    */
+    public void areEnemiesInMap()
+    {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
 
         foreach (GameObject enemy in enemies)
@@ -115,6 +120,11 @@ public class WaveSystemScript : MonoBehaviour
         Debug.Log("Enemy spawned, enemyCountOnMap="+ enemyCountOnMap);
     }
 
+    /* Keeps count of how many enemies are killed overall (totalKilledEnemies)
+        and in the current wave (killedEnemies), killedEnemies is used as a second
+        confirmation together with the bool enemiesInMap for establishing the fact
+        a wave has ended and the beginning of a new one.
+    */
     public void EnemyKilled()
     {
         totalKilledEnemies++;
@@ -145,6 +155,7 @@ public class WaveSystemScript : MonoBehaviour
         }
     }
 
+    /* Wave Complete text animation */
     private IEnumerator ShrinkTextSize()
     {
         while (countdownText.fontSize > fontSizeMin)
@@ -162,9 +173,9 @@ public class WaveSystemScript : MonoBehaviour
         countdownText.text = "Wave Complete!";
     }
 
-    public int GetTotalKills (){
+    public int GetTotalKills ()
+    {
         return totalKilledEnemies;
-
     }
 
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 public class SimpleCamera : MonoBehaviour
 {
     public Transform target;
-    public Vector3 offset; 
+    public Vector3 offset;
+    private Vector3 velocity;
+
     public float damping;
-    private Vector3 velocity ;
 
     // Start is called before the first frame update
     void Start()

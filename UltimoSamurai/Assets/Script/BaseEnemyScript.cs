@@ -6,18 +6,20 @@ using Pathfinding;
 
 public class BaseEnemyScript : MonoBehaviour
 {
-    
+    /* Project references */
     public Transform target; 
-    public int maxHealt = 100;
-    int currentHealth;
     public Animator animator;
     public GameObject enemy;
     public GameObject playerGameObject;
     public GameObject CoinGameObject;
     public GameObject WaveSystem;
+
     public AudioSource PoofSound;
     public AudioSource attackSound;
-
+    
+    /* Initial enemy values */
+    public int maxHealt = 100;
+    int currentHealth;
 
     /* Attack variables */ 
     public Transform enemyAttackPoint;
@@ -30,16 +32,16 @@ public class BaseEnemyScript : MonoBehaviour
     private int probabilityOfAttack;
 
     // Start is called before the first frame update
-    void Start(){
-    
+    void Start()
+    {
         currentHealth = maxHealt;
         animator.SetBool("isAlive",true);
         
     }
 
-    void FixedUpdate() {
-
-        //check if the enemy is near the player and attack
+    void FixedUpdate()
+    {
+        // Check if the enemy is near the player and attack
         if(timeBtwAttack<=0 )  Attack();
         else timeBtwAttack-= Time.deltaTime;
 
@@ -47,44 +49,45 @@ public class BaseEnemyScript : MonoBehaviour
 
     }
 
-
-
-    public void TakeDamage(int damage){
-
+    public void TakeDamage(int damage)
+    {
         currentHealth -= damage;
 
-        //play hurt animation
+        // Play hurt animation
         animator.SetTrigger("hit");
-        // knockback
-        
+
+        // Knockback
         if( currentHealth <= 0 ){
             //play death animation;
             enemy.transform.GetComponent<BaseEnemyMovement>().enabled= false;
             Die();
         }
-
     }
 
-    void Die(){
-
-        // Death animation
+    void Die()
+    {
+        // Play death animation
         GetComponent<Collider2D>().enabled=false;
-
         animator.SetBool("isAlive",false);
         animator.SetTrigger("isDead");
+
         // Deactivate enemy movement
         GetComponent<BaseEnemyMovement>().enabled=false;
+
         // Update wave system kill count
         WaveSystem.GetComponent<WaveSystemScript>().EnemyKilled();
-        Destroy(enemy,2.5f); // destroy sprite
+
+        // Destroy sprite
+        Destroy(enemy,2.5f);
 
     }
 
-    
-    void Attack(){
-// sostituire con OnCollisionEnter
+    void Attack()
+    {
+        // Sostituire con OnCollisionEnter
         startTimeBtwAttack= Random.Range(1.0f,3.0f);
         probabilityOfAttack = Random.Range(0,10);
+
         if( ((target.transform.position.x-enemy.transform.position.x<= 1.5f) 
              && ( target.transform.position.x - enemy.transform.position.x>= -1.5f))
                                              &&
@@ -93,54 +96,52 @@ public class BaseEnemyScript : MonoBehaviour
                             && probabilityOfAttack<=7 )
                  {
                     timeBtwAttack = startTimeBtwAttack;
-                    // start attack animation
+                    // Start attack animation
                     animator.SetTrigger("attack");
-                    //transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
                  }
         else timeBtwAttack=0.5f; 
-
     }
     
-
-    public void AttackAfterAnimation(){
-
+    public void AttackAfterAnimation()
+    {
                     // Detect player in range of attack
                     Collider2D[] hitplayer = Physics2D.OverlapCircleAll(enemyAttackPoint.position,attackrange,actorLayers);
 
-                     /*Damage enemies*/  
+                     // Damage enemies in range
                     foreach ( Collider2D player in hitplayer){
                         player.GetComponent<PlayerCombat>().PlayerTakeDamage(attackDamage);
                     }
-
     }
 
-    void OnDrawGizmosSelected(){
-
+    /* Draw attack radius */
+    void OnDrawGizmosSelected()
+    {
         if ( enemyAttackPoint == null) return;
-        Gizmos.DrawWireSphere(enemyAttackPoint.position,attackrange);
-        
+        Gizmos.DrawWireSphere(enemyAttackPoint.position,attackrange);   
     }
 
-    void startKnockBack(){
-
+    void startKnockBack()
+    {
         transform.GetComponent<KnockBackScript>().PlayFeedback(playerGameObject);
-    
     }
 
-    public void DropCoin(){
-
+    /* Enemy drops coin on death according to a luck factor */
+    public void DropCoin()
+    {
         int dropCoin = Random.Range(0,10);
         if(dropCoin<=5+playerGameObject.GetComponent<Player>().GetLuck()){
             Instantiate(CoinGameObject,transform.position, Quaternion.identity);//parametri: game object da instanziare; posizione ; rotazione 
         }
-
     } 
 
-    public void PlayPoofSound(){
-
+    /* Attack, death sounds */
+    public void PlayPoofSound()
+    {
         PoofSound.Play();
     }
-    public void PlayAttackSound(){
+
+    public void PlayAttackSound()
+    {
         attackSound.Play();
     }
 

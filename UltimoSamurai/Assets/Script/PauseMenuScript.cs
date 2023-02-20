@@ -6,28 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
-
-
     public GameObject pauseMenu;
     
-
-
-
-
-    public void onClickResumeButton(){
+    /* Resume playing button */
+    public void onClickResumeButton()
+    {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-
     }
 
-    public void onClickMainMenuButton(){
+    /* Go back to main menu button */
+    public void onClickMainMenuButton()
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
-        
     }
 
-    public void onClickExitButton(){
+    /* Exit app button */
+    public void onClickExitButton()
+    {
         Application.Quit();
-        
     }
 }

@@ -5,109 +5,113 @@ using UnityEngine.UI;
 
 public class Power_UpScript : MonoBehaviour
 {
+    /* GameObject references */
     public GameObject playerGameObject;
     public GameObject enemyGameObject;
     public GameObject shop;
     public GameObject healthBar;
     public GameObject currentPowerUpStatus;
+
+    /* AudioSource reference */
+    public AudioSource achievementUnlocked;
+
+    /* Power up prices */
     private int luckPrice = 5;
     private int strengthPrice = 5;
     private int criticalHitPrice= 3;
     private int incrementHealthPrice = 15;
+
+    /* New updated values */
     private int newCurrentCoin;
     private int newCurrentMaxHealth;
-    public AudioSource achievementUnlocked;
-    void Start(){
+    
+    void Start()
+    {
         shop.SetActive(false);
     }
-
     
-    public void IncreaseCriticalHitProbability(){
+    public void IncreaseCriticalHitProbability()
+    {
         newCurrentCoin= playerGameObject.GetComponent<Player>().getCurrentCoin() - criticalHitPrice;
 
-        if( newCurrentCoin>=0){
-            // aggiorna valore monete
+        if( newCurrentCoin>=0)
+        {
+            // Update coin value
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
-            //riproduci achievement sound
+            // Play achievement sound
              PlayAchievementSound();
-            // aggiorna valore critical hit
+            // Update critical hit value
             playerGameObject.GetComponent<PlayerCombat>().AddCriticalHitProbability();
-            // aggiorna stato parametri
+            // Update parameters status
             currentPowerUpStatus.GetComponent<CurrentPowerUpScript>().updateCurrentPowerUpState();
-            
-        }
-
-        
+        } 
     }
 
-    public void IncreaseLuck(){
+    public void IncreaseLuck()
+    {
         newCurrentCoin= playerGameObject.GetComponent<Player>().getCurrentCoin() - luckPrice;
 
-        if( newCurrentCoin>=0){
-            // aggiorna valore monete
+        if( newCurrentCoin>=0)
+        {
+            // Update coin value
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
-            //riproduci achievement sound
+            // Play achievement sound
             PlayAchievementSound();
             // aggiorna valore critical hit
             playerGameObject.GetComponent<Player>().setLuck();
-            // aggiorna stato parametri
+            // Update parameters status
             currentPowerUpStatus.GetComponent<CurrentPowerUpScript>().updateCurrentPowerUpState();
-            
         }
-
-
     }
 
-    public void IncreaseMaxHealth(){
+    public void IncreaseMaxHealth()
+    {
         newCurrentCoin= playerGameObject.GetComponent<Player>().getCurrentCoin() - incrementHealthPrice;
 
         if( newCurrentCoin>=0){
-            // aggiorna valore monete
+            // Update coin value
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
-            //riproduci achievement sound
+            // Play achievement sound
             PlayAchievementSound();
-            // aggiorna valore maxhealth su script bar script
+            // Update maxhelath value on healthbar script
             healthBar.GetComponent<HealthBarScript>().IncreaseMaxHealth(playerGameObject.GetComponent<Player>().CurrentMaxHealth());
-            // aggiorna valore currhealth su player script
+            // Update currhealth value on player script
             newCurrentMaxHealth = 50 + playerGameObject.GetComponent<Player>().CurrentMaxHealth();
             playerGameObject.GetComponent<Player>().SetMaxHealth(newCurrentMaxHealth);
-            // aggiorna stato parametri
+            // Update parameters status
             currentPowerUpStatus.GetComponent<CurrentPowerUpScript>().updateCurrentPowerUpState();
-
-            
-        } 
-
-
+        }
     }
 
-    public void IncreaseStrength(){
+    public void IncreaseStrength()
+    {
         newCurrentCoin= playerGameObject.GetComponent<Player>().getCurrentCoin() - strengthPrice;
 
-        if( newCurrentCoin>=0){
-            // aggiorna valore monete
+        if( newCurrentCoin>=0)
+        {
+            // Update coin value
             playerGameObject.GetComponent<CoinCounterScript>().updateCoinCounter(newCurrentCoin);
             playerGameObject.GetComponent<Player>().SetCurrentCoin(newCurrentCoin);
-            //riproduci achievement sound
+            // Play achievement sound
             PlayAchievementSound();
-            // aggiorna valore strength
+            // Update strength value
             playerGameObject.GetComponent<PlayerCombat>().AddStrength();
-            // aggiorna stato parametri
+            // Updata parameters status
             currentPowerUpStatus.GetComponent<CurrentPowerUpScript>().updateCurrentPowerUpState();
-
-            
         }        
-
     }
-    public void ExitButton(){
+
+    public void ExitButton()
+    {
         Time.timeScale = 1f;
         shop.SetActive(false);
-
     }
 
-    public void PlayAchievementSound(){
+    public void PlayAchievementSound()
+    {
         achievementUnlocked.Play();
     }
 }

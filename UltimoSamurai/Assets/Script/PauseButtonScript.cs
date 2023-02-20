@@ -16,12 +16,11 @@ public class PauseButtonScript : MonoBehaviour
     {
         
     }
-
-    public void pauseButtonClicked(){
+    
+    /* Game pause */
+    public void pauseButtonClicked()
+    {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f; 
-
     }
-
-
 }

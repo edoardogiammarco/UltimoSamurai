@@ -6,10 +6,17 @@ public class CoinSpawner : MonoBehaviour
 {
     public GameObject coinPrefab;
     public Vector3 spawnPosition;
-    public float minSpawnTime = 30f;
-    public float maxSpawnTime = 60f;
     private GameObject player;
     private Player playerScript;
+
+    public float minSpawnTime = 30f;
+    public float maxSpawnTime = 60f;
+    
+    /* 
+        Starts coin spawning co routine, coins
+        spawn in the center of the map every 
+        30 - 60 seconds
+    */
 
     private void Start()
     {

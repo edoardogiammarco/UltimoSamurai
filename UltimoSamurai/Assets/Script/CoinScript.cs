@@ -7,17 +7,18 @@ public class CoinScript : MonoBehaviour
 {
     public GameObject player;
 
-    private void OnTriggerEnter2D( Collider2D collision){
-
-  
-        if( collision.tag == "Player"){
+    /* Updates  coin counter when player gathers coin*/
+    private void OnTriggerEnter2D( Collider2D collision)
+    {
+        if( collision.tag == "Player")            
+        {
             IncrementCoinCounter();
             Destroy(gameObject);
         }
     }
 
-    public void IncrementCoinCounter(){
+    public void IncrementCoinCounter()
+    {
         player.GetComponent<Player>().CoinCollected();
-
     }
 }

@@ -4,35 +4,46 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour
 {
-
     public AudioSource mainTheme;
     public GameObject tutorialWindow;
 
+    /*
+        The following methods are responsible for switching
+        in between scenes when they are being called from
+        other parts of the game's code
+    */
 
-    public void GoToGameScene(){
+    public void GoToGameScene()
+    {
         SceneManager.LoadScene("Main");
         mainTheme.Play();
     }
-        public void GoToGameOverScene(){
+
+    public void GoToGameOverScene()
+    {
         SceneManager.LoadScene("Game Over");
     }    
-    public void GoToMainMenuScene(){
+
+    public void GoToMainMenuScene()
+    {
         SceneManager.LoadScene("Main Menu");
     }
 
-    public void GoToLoginScene(){
+    public void GoToLoginScene()
+    {
         SceneManager.LoadScene("LeaderBoard");
     }
 
-    public void ActiveTutorialWindow(){
+    public void ActiveTutorialWindow()
+    {
         tutorialWindow.SetActive(true);
-
     }
 
-    public void DeactiveTutorialWindow(){
+    public void DeactiveTutorialWindow()
+    {
         tutorialWindow.SetActive(false);
-
     }    
+
     // Start is called before the first frame update
     void Start()
     {
