@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public GameObject playerGameObject;
     public GameObject healthBar;
     public GameObject darknessBar;
+    public GameObject waveSystem;
+    public Leaderboard leaderboard;
     public Animator animator;
     private Vector3 moveDelta;
     private BoxCollider2D boxCollider;
@@ -56,11 +58,18 @@ public class Player : MonoBehaviour
 
     }
     public void Die(){
+        int finalScore = waveSystem.GetComponent<WaveSystemScript>().GetTotalKills();
+        StartCoroutine(SaveScoreRoutine(finalScore));
         isPlayerAlive = false;
         animator.SetBool("isAlive",false);   
         animator.SetTrigger("death");    // set variables for animator
         GetComponent<MovePlayer>().enabled = false;  // player cant move anymore...
         deathSound.Play();  // last breath....
+    }
+
+    private IEnumerator SaveScoreRoutine (  int score ){
+        yield return leaderboard.SubmitScoreRoutine(score);
+
     }
 
 

@@ -21,7 +21,7 @@ public class GameMaster : MonoBehaviour
     }
 
     public void GoToLoginScene(){
-        SceneManager.LoadScene("AuthScene");
+        SceneManager.LoadScene("LeaderBoard");
     }
 
     public void ActiveTutorialWindow(){

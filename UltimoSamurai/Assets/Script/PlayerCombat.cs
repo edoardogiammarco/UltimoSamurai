@@ -101,7 +101,7 @@ public class PlayerCombat : MonoBehaviour
 
              /*Detect enemies in range of attack*/
              Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(attack1CriticalRectangleCorner.position,attack1CriticalRectangleOppositeCorner.position,enemyLayers);
-             attackCritSound.Play();
+             attackCritSound.Play();// play crit hit sound
              
              /*Damage enemies*/  
              foreach ( Collider2D enemy in hitEnemies){
@@ -173,6 +173,7 @@ public class PlayerCombat : MonoBehaviour
     void goToGameOverScene(){ 
         SceneManager.LoadScene("Game Over"); 
     }
+
 
    
    

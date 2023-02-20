@@ -10,7 +10,7 @@ public class KunaiLauncherScript : MonoBehaviour
     public GameObject kunaiPrefab;
     public Transform firePoint;
     public Vector2 direction;
-    public AudioSource shurikenSound;
+
     private float timeBtwLaunchKunai;      
     public float startTimeBtwLaunchKunai = 1f;
     public float shurikenSpeed;
@@ -28,7 +28,8 @@ public class KunaiLauncherScript : MonoBehaviour
 
         if(nowLaunchKunai== true){ 
             direction =  player.GetComponent<Rigidbody2D>().velocity;
-            Debug.Log(direction);     
+     
+
              ShootKunai();
              timeBtwLaunchKunai= startTimeBtwLaunchKunai;
             }
@@ -38,7 +39,6 @@ public class KunaiLauncherScript : MonoBehaviour
     public void ShootKunai(){
         GameObject bullet = Instantiate(kunaiPrefab,firePoint.position,firePoint.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        shurikenSound.Play();
         
         if(direction!= Vector2.zero){ // if player is moving
             bulletRb.AddForce( new Vector2(direction.x*shurikenSpeed, direction.y*shurikenSpeed ) , ForceMode2D.Impulse);

@@ -69,7 +69,7 @@ public class WaveSystemScript : MonoBehaviour
             waveCounterText.text = "Wave: " + waveCount;
 
             // Adding more enemies for next wave
-            waveEnemies = waveCount;
+            waveEnemies = waveCount*2;
 
             for (int i=0; i < waveEnemies; i++)
             {
@@ -160,6 +160,11 @@ public class WaveSystemScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         countdownText.text = "Wave Complete!";
+    }
+
+    public int GetTotalKills (){
+        return totalKilledEnemies;
+
     }
 
 }
