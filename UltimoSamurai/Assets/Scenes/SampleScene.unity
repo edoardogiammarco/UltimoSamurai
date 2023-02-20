@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 56877855}
   - component: {fileID: 56877854}
   m_Layer: 0
-  m_Name: Waves_Input
+  m_Name: Deaths_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -608,7 +608,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 70}
+  m_SizeDelta: {x: 150, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56877854
 MonoBehaviour:
@@ -928,9 +928,9 @@ MonoBehaviour:
   passwordRegisterVerifyField: {fileID: 2049681267}
   warningRegisterText: {fileID: 537031899}
   usernameField: {fileID: 1302477861}
-  pointsField: {fileID: 935969858}
+  pointsField: {fileID: 0}
   killsField: {fileID: 2074477787}
-  wavesField: {fileID: 56877854}
+  wavesField: {fileID: 0}
   scoreElement: {fileID: 1879445940651037232, guid: 829cd42e5df49e047a3a4afb1ba6859d,
     type: 3}
   scoreboardContent: {fileID: 1253624677}
@@ -2116,7 +2116,7 @@ GameObject:
   - component: {fileID: 367991660}
   - component: {fileID: 367991659}
   m_Layer: 0
-  m_Name: Points_Text
+  m_Name: XP_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4665,7 +4665,7 @@ GameObject:
   - component: {fileID: 935969859}
   - component: {fileID: 935969858}
   m_Layer: 0
-  m_Name: Points_Input
+  m_Name: XP_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5043,7 +5043,7 @@ GameObject:
   - component: {fileID: 1034423808}
   - component: {fileID: 1034423807}
   m_Layer: 0
-  m_Name: Waves_Text
+  m_Name: Deaths_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11436,7 +11436,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 70}
+  m_SizeDelta: {x: 150, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074477787
 MonoBehaviour:
