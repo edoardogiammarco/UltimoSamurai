@@ -69,12 +69,12 @@ public class WaveSystemScript : MonoBehaviour
             waveCounterText.text = "Wave: " + waveCount;
 
             // Adding more enemies for next wave
-            waveEnemies = waveCount*2;
+            waveEnemies = (waveCount+2)*2;
 
             for (int i=0; i < waveEnemies; i++)
             {
                 SpawnEnemy();
-                yield return new WaitForSeconds(Random.Range(0.5f, 3f));
+                yield return new WaitForSeconds(Random.Range(0.2f, 1f));
                 Debug.Log("Enemy spawned in wave " + waveCount);
             }
 

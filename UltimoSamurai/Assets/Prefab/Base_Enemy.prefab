@@ -151,10 +151,12 @@ MonoBehaviour:
   enemy: {fileID: 7460068532503268927}
   playerGameObject: {fileID: 8646316460666705818, guid: e076a8d93d8721d46bbb967d9d65454b, type: 3}
   CoinGameObject: {fileID: 7194754231311205081, guid: f3f2d6c1224fc1445a767d5b51f79a0b, type: 3}
-  Luck: 0
+  WaveSystem: {fileID: 0}
+  PoofSound: {fileID: 0}
+  attackSound: {fileID: 0}
   enemyAttackPoint: {fileID: 7460068532962822864}
-  attackrange: 0.5
-  attackDamage: 20
+  attackrange: 1.1
+  attackDamage: 15
   actorLayers:
     serializedVersion: 2
     m_Bits: 512
@@ -260,9 +262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc56c60f6974aea48b0127795c93857e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 7460068532503268922}
   target: {fileID: 0}
   nextWaypointDistance: 1
-  animator: {fileID: 7460068532503268922}
 --- !u!1 &7460068532962822865
 GameObject:
   m_ObjectHideFlags: 0
