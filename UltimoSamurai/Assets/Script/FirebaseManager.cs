@@ -33,9 +33,9 @@ public class FirebaseManager : MonoBehaviour
     //User Data variables
     [Header("UserData")]
     public TMP_InputField usernameField;
-    public TMP_InputField pointsField;
+    public TMP_InputField xpField;
     public TMP_InputField killsField;
-    public TMP_InputField wavesField;
+    public TMP_InputField deathsField;
     public GameObject scoreElement;
     public Transform scoreboardContent;
 
@@ -103,9 +103,9 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(UpdateUsernameAuth(usernameField.text));
         StartCoroutine(UpdateUsernameDatabase(usernameField.text));
 
-        StartCoroutine(UpdateXp(int.Parse(pointsField.text)));
+        StartCoroutine(UpdateXp(int.Parse(xpField.text)));
         StartCoroutine(UpdateKills(int.Parse(killsField.text)));
-        StartCoroutine(UpdateDeaths(int.Parse(wavesField.text)));
+        StartCoroutine(UpdateDeaths(int.Parse(deathsField.text)));
     }
     //Function for the scoreboard button
     public void ScoreboardButton()
@@ -350,18 +350,18 @@ public class FirebaseManager : MonoBehaviour
         else if (DBTask.Result.Value == null)
         {
             //No data exists yet
-            pointsField.text = "0";
+            xpField.text = "0";
             killsField.text = "0";
-            wavesField.text = "0";
+            deathsField.text = "0";
         }
         else
         {
             //Data has been retrieved
             DataSnapshot snapshot = DBTask.Result;
 
-            pointsField.text = snapshot.Child("points").Value.ToString();
+            xpField.text = snapshot.Child("xp").Value.ToString();
             killsField.text = snapshot.Child("kills").Value.ToString();
-            wavesField.text = snapshot.Child("waves").Value.ToString();
+            deathsField.text = snapshot.Child("deaths").Value.ToString();
         }
     }
 
